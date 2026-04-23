@@ -1,0 +1,7 @@
+model_key,train_dataset,recommended_condition,recommended_mean_accuracy,recommended_trainable_params,recommended_estimated_cu,full_reference_accuracy,within_95pct_of_full,reason
+falcon_h1_0_5b_base,codealpaca,attention_only,0.49484120244565216,2211840.0,3.953191756765048,0.478801408340301,True,Smallest trainable-parameter / CU configuration within 95% of the full baseline mean accuracy.
+falcon_h1_0_5b_base,gsm8k_train,attention_only,0.5273486491429766,2211840.0,2.3558007683820197,0.5086600517349498,True,Smallest trainable-parameter / CU configuration within 95% of the full baseline mean accuracy.
+falcon_h1_0_5b_base,ultrachat,attention_only,0.5106066445443144,2211840.0,,0.4889148724916388,True,Smallest trainable-parameter / CU configuration within 95% of the full baseline mean accuracy.
+qwen3_5_0_8b_base,codealpaca,all_layers,0.4301137254389632,10822656.0,1.1881163759960067,0.4301137254389632,True,Smallest trainable-parameter / CU configuration within 95% of the full baseline mean accuracy.
+qwen3_5_0_8b_base,gsm8k_train,softmax_only,0.5032154708403009,1081344.0,1.2036293839414913,0.5067673494983278,True,Smallest trainable-parameter / CU configuration within 95% of the full baseline mean accuracy.
+qwen3_5_0_8b_base,ultrachat,softmax_only,0.47844703699832775,1081344.0,2.312694874399238,0.4331103678929766,True,Smallest trainable-parameter / CU configuration within 95% of the full baseline mean accuracy.

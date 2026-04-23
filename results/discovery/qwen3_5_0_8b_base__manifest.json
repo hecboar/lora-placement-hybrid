@@ -1,0 +1,6841 @@
+{
+  "model_key": "qwen3_5_0_8b_base",
+  "hf_id": "Qwen/Qwen3.5-0.8B-Base",
+  "family": "qwen3_5",
+  "variant": "base",
+  "layer_container_name": "model.layers",
+  "num_layers": 24,
+  "layer_types": [
+    "linear_attention",
+    "linear_attention",
+    "linear_attention",
+    "full_attention",
+    "linear_attention",
+    "linear_attention",
+    "linear_attention",
+    "full_attention",
+    "linear_attention",
+    "linear_attention",
+    "linear_attention",
+    "full_attention",
+    "linear_attention",
+    "linear_attention",
+    "linear_attention",
+    "full_attention",
+    "linear_attention",
+    "linear_attention",
+    "linear_attention",
+    "full_attention",
+    "linear_attention",
+    "linear_attention",
+    "linear_attention",
+    "full_attention"
+  ],
+  "records": [
+    {
+      "full_name": "",
+      "short_name": "<root>",
+      "class_name": "Qwen3_5ForCausalLM",
+      "layer_idx": null,
+      "layer_type": null,
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model",
+      "short_name": "model",
+      "class_name": "Qwen3_5TextModel",
+      "layer_idx": null,
+      "layer_type": null,
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.embed_tokens",
+      "short_name": "embed_tokens",
+      "class_name": "Embedding",
+      "layer_idx": null,
+      "layer_type": null,
+      "component": "embedding",
+      "direct_param_count": 254279680,
+      "direct_param_shapes": {
+        "weight": [
+          248320,
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers",
+      "short_name": "layers",
+      "class_name": "ModuleList",
+      "layer_idx": null,
+      "layer_type": null,
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.0",
+      "short_name": "0",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 0,
+      "layer_type": "linear_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.0.linear_attn",
+      "short_name": "linear_attn",
+      "class_name": "Qwen3_5GatedDeltaNet",
+      "layer_idx": 0,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 32,
+      "direct_param_shapes": {
+        "dt_bias": [
+          16
+        ],
+        "A_log": [
+          16
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.0.linear_attn.act",
+      "short_name": "act",
+      "class_name": "SiLUActivation",
+      "layer_idx": 0,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.0.linear_attn.conv1d",
+      "short_name": "conv1d",
+      "class_name": "Conv1d",
+      "layer_idx": 0,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 24576,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1,
+          4
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.0.linear_attn.norm",
+      "short_name": "norm",
+      "class_name": "Qwen3_5RMSNormGated",
+      "layer_idx": 0,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 128,
+      "direct_param_shapes": {
+        "weight": [
+          128
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.0.linear_attn.out_proj",
+      "short_name": "out_proj",
+      "class_name": "Linear",
+      "layer_idx": 0,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.0.linear_attn.in_proj_qkv",
+      "short_name": "in_proj_qkv",
+      "class_name": "Linear",
+      "layer_idx": 0,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 6291456,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.0.linear_attn.in_proj_z",
+      "short_name": "in_proj_z",
+      "class_name": "Linear",
+      "layer_idx": 0,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          2048,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.0.linear_attn.in_proj_b",
+      "short_name": "in_proj_b",
+      "class_name": "Linear",
+      "layer_idx": 0,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.0.linear_attn.in_proj_a",
+      "short_name": "in_proj_a",
+      "class_name": "Linear",
+      "layer_idx": 0,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.0.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 0,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.0.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 0,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.0.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 0,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.0.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 0,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.0.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 0,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.0.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 0,
+      "layer_type": "linear_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.0.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 0,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.1",
+      "short_name": "1",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 1,
+      "layer_type": "linear_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.1.linear_attn",
+      "short_name": "linear_attn",
+      "class_name": "Qwen3_5GatedDeltaNet",
+      "layer_idx": 1,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 32,
+      "direct_param_shapes": {
+        "dt_bias": [
+          16
+        ],
+        "A_log": [
+          16
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.1.linear_attn.act",
+      "short_name": "act",
+      "class_name": "SiLUActivation",
+      "layer_idx": 1,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.1.linear_attn.conv1d",
+      "short_name": "conv1d",
+      "class_name": "Conv1d",
+      "layer_idx": 1,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 24576,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1,
+          4
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.1.linear_attn.norm",
+      "short_name": "norm",
+      "class_name": "Qwen3_5RMSNormGated",
+      "layer_idx": 1,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 128,
+      "direct_param_shapes": {
+        "weight": [
+          128
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.1.linear_attn.out_proj",
+      "short_name": "out_proj",
+      "class_name": "Linear",
+      "layer_idx": 1,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.1.linear_attn.in_proj_qkv",
+      "short_name": "in_proj_qkv",
+      "class_name": "Linear",
+      "layer_idx": 1,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 6291456,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.1.linear_attn.in_proj_z",
+      "short_name": "in_proj_z",
+      "class_name": "Linear",
+      "layer_idx": 1,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          2048,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.1.linear_attn.in_proj_b",
+      "short_name": "in_proj_b",
+      "class_name": "Linear",
+      "layer_idx": 1,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.1.linear_attn.in_proj_a",
+      "short_name": "in_proj_a",
+      "class_name": "Linear",
+      "layer_idx": 1,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.1.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 1,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.1.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 1,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.1.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 1,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.1.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 1,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.1.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 1,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.1.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 1,
+      "layer_type": "linear_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.1.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 1,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.2",
+      "short_name": "2",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 2,
+      "layer_type": "linear_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.2.linear_attn",
+      "short_name": "linear_attn",
+      "class_name": "Qwen3_5GatedDeltaNet",
+      "layer_idx": 2,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 32,
+      "direct_param_shapes": {
+        "dt_bias": [
+          16
+        ],
+        "A_log": [
+          16
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.2.linear_attn.act",
+      "short_name": "act",
+      "class_name": "SiLUActivation",
+      "layer_idx": 2,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.2.linear_attn.conv1d",
+      "short_name": "conv1d",
+      "class_name": "Conv1d",
+      "layer_idx": 2,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 24576,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1,
+          4
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.2.linear_attn.norm",
+      "short_name": "norm",
+      "class_name": "Qwen3_5RMSNormGated",
+      "layer_idx": 2,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 128,
+      "direct_param_shapes": {
+        "weight": [
+          128
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.2.linear_attn.out_proj",
+      "short_name": "out_proj",
+      "class_name": "Linear",
+      "layer_idx": 2,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.2.linear_attn.in_proj_qkv",
+      "short_name": "in_proj_qkv",
+      "class_name": "Linear",
+      "layer_idx": 2,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 6291456,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.2.linear_attn.in_proj_z",
+      "short_name": "in_proj_z",
+      "class_name": "Linear",
+      "layer_idx": 2,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          2048,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.2.linear_attn.in_proj_b",
+      "short_name": "in_proj_b",
+      "class_name": "Linear",
+      "layer_idx": 2,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.2.linear_attn.in_proj_a",
+      "short_name": "in_proj_a",
+      "class_name": "Linear",
+      "layer_idx": 2,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.2.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 2,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.2.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 2,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.2.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 2,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.2.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 2,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.2.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 2,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.2.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 2,
+      "layer_type": "linear_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.2.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 2,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.3",
+      "short_name": "3",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 3,
+      "layer_type": "full_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.3.self_attn",
+      "short_name": "self_attn",
+      "class_name": "Qwen3_5Attention",
+      "layer_idx": 3,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.3.self_attn.q_proj",
+      "short_name": "q_proj",
+      "class_name": "Linear",
+      "layer_idx": 3,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 4194304,
+      "direct_param_shapes": {
+        "weight": [
+          4096,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.3.self_attn.k_proj",
+      "short_name": "k_proj",
+      "class_name": "Linear",
+      "layer_idx": 3,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 524288,
+      "direct_param_shapes": {
+        "weight": [
+          512,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.3.self_attn.v_proj",
+      "short_name": "v_proj",
+      "class_name": "Linear",
+      "layer_idx": 3,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 524288,
+      "direct_param_shapes": {
+        "weight": [
+          512,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.3.self_attn.o_proj",
+      "short_name": "o_proj",
+      "class_name": "Linear",
+      "layer_idx": 3,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.3.self_attn.q_norm",
+      "short_name": "q_norm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 3,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 256,
+      "direct_param_shapes": {
+        "weight": [
+          256
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.3.self_attn.k_norm",
+      "short_name": "k_norm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 3,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 256,
+      "direct_param_shapes": {
+        "weight": [
+          256
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.3.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 3,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.3.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 3,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.3.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 3,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.3.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 3,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.3.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 3,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.3.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 3,
+      "layer_type": "full_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.3.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 3,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.4",
+      "short_name": "4",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 4,
+      "layer_type": "linear_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.4.linear_attn",
+      "short_name": "linear_attn",
+      "class_name": "Qwen3_5GatedDeltaNet",
+      "layer_idx": 4,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 32,
+      "direct_param_shapes": {
+        "dt_bias": [
+          16
+        ],
+        "A_log": [
+          16
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.4.linear_attn.act",
+      "short_name": "act",
+      "class_name": "SiLUActivation",
+      "layer_idx": 4,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.4.linear_attn.conv1d",
+      "short_name": "conv1d",
+      "class_name": "Conv1d",
+      "layer_idx": 4,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 24576,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1,
+          4
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.4.linear_attn.norm",
+      "short_name": "norm",
+      "class_name": "Qwen3_5RMSNormGated",
+      "layer_idx": 4,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 128,
+      "direct_param_shapes": {
+        "weight": [
+          128
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.4.linear_attn.out_proj",
+      "short_name": "out_proj",
+      "class_name": "Linear",
+      "layer_idx": 4,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.4.linear_attn.in_proj_qkv",
+      "short_name": "in_proj_qkv",
+      "class_name": "Linear",
+      "layer_idx": 4,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 6291456,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.4.linear_attn.in_proj_z",
+      "short_name": "in_proj_z",
+      "class_name": "Linear",
+      "layer_idx": 4,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          2048,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.4.linear_attn.in_proj_b",
+      "short_name": "in_proj_b",
+      "class_name": "Linear",
+      "layer_idx": 4,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.4.linear_attn.in_proj_a",
+      "short_name": "in_proj_a",
+      "class_name": "Linear",
+      "layer_idx": 4,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.4.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 4,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.4.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 4,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.4.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 4,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.4.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 4,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.4.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 4,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.4.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 4,
+      "layer_type": "linear_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.4.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 4,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.5",
+      "short_name": "5",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 5,
+      "layer_type": "linear_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.5.linear_attn",
+      "short_name": "linear_attn",
+      "class_name": "Qwen3_5GatedDeltaNet",
+      "layer_idx": 5,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 32,
+      "direct_param_shapes": {
+        "dt_bias": [
+          16
+        ],
+        "A_log": [
+          16
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.5.linear_attn.act",
+      "short_name": "act",
+      "class_name": "SiLUActivation",
+      "layer_idx": 5,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.5.linear_attn.conv1d",
+      "short_name": "conv1d",
+      "class_name": "Conv1d",
+      "layer_idx": 5,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 24576,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1,
+          4
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.5.linear_attn.norm",
+      "short_name": "norm",
+      "class_name": "Qwen3_5RMSNormGated",
+      "layer_idx": 5,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 128,
+      "direct_param_shapes": {
+        "weight": [
+          128
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.5.linear_attn.out_proj",
+      "short_name": "out_proj",
+      "class_name": "Linear",
+      "layer_idx": 5,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.5.linear_attn.in_proj_qkv",
+      "short_name": "in_proj_qkv",
+      "class_name": "Linear",
+      "layer_idx": 5,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 6291456,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.5.linear_attn.in_proj_z",
+      "short_name": "in_proj_z",
+      "class_name": "Linear",
+      "layer_idx": 5,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          2048,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.5.linear_attn.in_proj_b",
+      "short_name": "in_proj_b",
+      "class_name": "Linear",
+      "layer_idx": 5,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.5.linear_attn.in_proj_a",
+      "short_name": "in_proj_a",
+      "class_name": "Linear",
+      "layer_idx": 5,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.5.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 5,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.5.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 5,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.5.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 5,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.5.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 5,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.5.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 5,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.5.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 5,
+      "layer_type": "linear_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.5.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 5,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.6",
+      "short_name": "6",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 6,
+      "layer_type": "linear_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.6.linear_attn",
+      "short_name": "linear_attn",
+      "class_name": "Qwen3_5GatedDeltaNet",
+      "layer_idx": 6,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 32,
+      "direct_param_shapes": {
+        "dt_bias": [
+          16
+        ],
+        "A_log": [
+          16
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.6.linear_attn.act",
+      "short_name": "act",
+      "class_name": "SiLUActivation",
+      "layer_idx": 6,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.6.linear_attn.conv1d",
+      "short_name": "conv1d",
+      "class_name": "Conv1d",
+      "layer_idx": 6,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 24576,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1,
+          4
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.6.linear_attn.norm",
+      "short_name": "norm",
+      "class_name": "Qwen3_5RMSNormGated",
+      "layer_idx": 6,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 128,
+      "direct_param_shapes": {
+        "weight": [
+          128
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.6.linear_attn.out_proj",
+      "short_name": "out_proj",
+      "class_name": "Linear",
+      "layer_idx": 6,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.6.linear_attn.in_proj_qkv",
+      "short_name": "in_proj_qkv",
+      "class_name": "Linear",
+      "layer_idx": 6,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 6291456,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.6.linear_attn.in_proj_z",
+      "short_name": "in_proj_z",
+      "class_name": "Linear",
+      "layer_idx": 6,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          2048,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.6.linear_attn.in_proj_b",
+      "short_name": "in_proj_b",
+      "class_name": "Linear",
+      "layer_idx": 6,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.6.linear_attn.in_proj_a",
+      "short_name": "in_proj_a",
+      "class_name": "Linear",
+      "layer_idx": 6,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.6.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 6,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.6.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 6,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.6.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 6,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.6.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 6,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.6.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 6,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.6.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 6,
+      "layer_type": "linear_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.6.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 6,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.7",
+      "short_name": "7",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 7,
+      "layer_type": "full_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.7.self_attn",
+      "short_name": "self_attn",
+      "class_name": "Qwen3_5Attention",
+      "layer_idx": 7,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.7.self_attn.q_proj",
+      "short_name": "q_proj",
+      "class_name": "Linear",
+      "layer_idx": 7,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 4194304,
+      "direct_param_shapes": {
+        "weight": [
+          4096,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.7.self_attn.k_proj",
+      "short_name": "k_proj",
+      "class_name": "Linear",
+      "layer_idx": 7,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 524288,
+      "direct_param_shapes": {
+        "weight": [
+          512,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.7.self_attn.v_proj",
+      "short_name": "v_proj",
+      "class_name": "Linear",
+      "layer_idx": 7,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 524288,
+      "direct_param_shapes": {
+        "weight": [
+          512,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.7.self_attn.o_proj",
+      "short_name": "o_proj",
+      "class_name": "Linear",
+      "layer_idx": 7,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.7.self_attn.q_norm",
+      "short_name": "q_norm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 7,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 256,
+      "direct_param_shapes": {
+        "weight": [
+          256
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.7.self_attn.k_norm",
+      "short_name": "k_norm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 7,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 256,
+      "direct_param_shapes": {
+        "weight": [
+          256
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.7.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 7,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.7.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 7,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.7.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 7,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.7.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 7,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.7.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 7,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.7.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 7,
+      "layer_type": "full_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.7.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 7,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.8",
+      "short_name": "8",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 8,
+      "layer_type": "linear_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.8.linear_attn",
+      "short_name": "linear_attn",
+      "class_name": "Qwen3_5GatedDeltaNet",
+      "layer_idx": 8,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 32,
+      "direct_param_shapes": {
+        "dt_bias": [
+          16
+        ],
+        "A_log": [
+          16
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.8.linear_attn.act",
+      "short_name": "act",
+      "class_name": "SiLUActivation",
+      "layer_idx": 8,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.8.linear_attn.conv1d",
+      "short_name": "conv1d",
+      "class_name": "Conv1d",
+      "layer_idx": 8,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 24576,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1,
+          4
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.8.linear_attn.norm",
+      "short_name": "norm",
+      "class_name": "Qwen3_5RMSNormGated",
+      "layer_idx": 8,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 128,
+      "direct_param_shapes": {
+        "weight": [
+          128
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.8.linear_attn.out_proj",
+      "short_name": "out_proj",
+      "class_name": "Linear",
+      "layer_idx": 8,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.8.linear_attn.in_proj_qkv",
+      "short_name": "in_proj_qkv",
+      "class_name": "Linear",
+      "layer_idx": 8,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 6291456,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.8.linear_attn.in_proj_z",
+      "short_name": "in_proj_z",
+      "class_name": "Linear",
+      "layer_idx": 8,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          2048,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.8.linear_attn.in_proj_b",
+      "short_name": "in_proj_b",
+      "class_name": "Linear",
+      "layer_idx": 8,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.8.linear_attn.in_proj_a",
+      "short_name": "in_proj_a",
+      "class_name": "Linear",
+      "layer_idx": 8,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.8.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 8,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.8.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 8,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.8.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 8,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.8.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 8,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.8.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 8,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.8.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 8,
+      "layer_type": "linear_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.8.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 8,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.9",
+      "short_name": "9",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 9,
+      "layer_type": "linear_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.9.linear_attn",
+      "short_name": "linear_attn",
+      "class_name": "Qwen3_5GatedDeltaNet",
+      "layer_idx": 9,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 32,
+      "direct_param_shapes": {
+        "dt_bias": [
+          16
+        ],
+        "A_log": [
+          16
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.9.linear_attn.act",
+      "short_name": "act",
+      "class_name": "SiLUActivation",
+      "layer_idx": 9,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.9.linear_attn.conv1d",
+      "short_name": "conv1d",
+      "class_name": "Conv1d",
+      "layer_idx": 9,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 24576,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1,
+          4
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.9.linear_attn.norm",
+      "short_name": "norm",
+      "class_name": "Qwen3_5RMSNormGated",
+      "layer_idx": 9,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 128,
+      "direct_param_shapes": {
+        "weight": [
+          128
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.9.linear_attn.out_proj",
+      "short_name": "out_proj",
+      "class_name": "Linear",
+      "layer_idx": 9,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.9.linear_attn.in_proj_qkv",
+      "short_name": "in_proj_qkv",
+      "class_name": "Linear",
+      "layer_idx": 9,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 6291456,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.9.linear_attn.in_proj_z",
+      "short_name": "in_proj_z",
+      "class_name": "Linear",
+      "layer_idx": 9,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          2048,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.9.linear_attn.in_proj_b",
+      "short_name": "in_proj_b",
+      "class_name": "Linear",
+      "layer_idx": 9,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.9.linear_attn.in_proj_a",
+      "short_name": "in_proj_a",
+      "class_name": "Linear",
+      "layer_idx": 9,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.9.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 9,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.9.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 9,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.9.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 9,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.9.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 9,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.9.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 9,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.9.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 9,
+      "layer_type": "linear_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.9.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 9,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.10",
+      "short_name": "10",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 10,
+      "layer_type": "linear_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.10.linear_attn",
+      "short_name": "linear_attn",
+      "class_name": "Qwen3_5GatedDeltaNet",
+      "layer_idx": 10,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 32,
+      "direct_param_shapes": {
+        "dt_bias": [
+          16
+        ],
+        "A_log": [
+          16
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.10.linear_attn.act",
+      "short_name": "act",
+      "class_name": "SiLUActivation",
+      "layer_idx": 10,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.10.linear_attn.conv1d",
+      "short_name": "conv1d",
+      "class_name": "Conv1d",
+      "layer_idx": 10,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 24576,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1,
+          4
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.10.linear_attn.norm",
+      "short_name": "norm",
+      "class_name": "Qwen3_5RMSNormGated",
+      "layer_idx": 10,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 128,
+      "direct_param_shapes": {
+        "weight": [
+          128
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.10.linear_attn.out_proj",
+      "short_name": "out_proj",
+      "class_name": "Linear",
+      "layer_idx": 10,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.10.linear_attn.in_proj_qkv",
+      "short_name": "in_proj_qkv",
+      "class_name": "Linear",
+      "layer_idx": 10,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 6291456,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.10.linear_attn.in_proj_z",
+      "short_name": "in_proj_z",
+      "class_name": "Linear",
+      "layer_idx": 10,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          2048,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.10.linear_attn.in_proj_b",
+      "short_name": "in_proj_b",
+      "class_name": "Linear",
+      "layer_idx": 10,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.10.linear_attn.in_proj_a",
+      "short_name": "in_proj_a",
+      "class_name": "Linear",
+      "layer_idx": 10,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.10.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 10,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.10.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 10,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.10.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 10,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.10.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 10,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.10.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 10,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.10.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 10,
+      "layer_type": "linear_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.10.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 10,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.11",
+      "short_name": "11",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 11,
+      "layer_type": "full_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.11.self_attn",
+      "short_name": "self_attn",
+      "class_name": "Qwen3_5Attention",
+      "layer_idx": 11,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.11.self_attn.q_proj",
+      "short_name": "q_proj",
+      "class_name": "Linear",
+      "layer_idx": 11,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 4194304,
+      "direct_param_shapes": {
+        "weight": [
+          4096,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.11.self_attn.k_proj",
+      "short_name": "k_proj",
+      "class_name": "Linear",
+      "layer_idx": 11,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 524288,
+      "direct_param_shapes": {
+        "weight": [
+          512,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.11.self_attn.v_proj",
+      "short_name": "v_proj",
+      "class_name": "Linear",
+      "layer_idx": 11,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 524288,
+      "direct_param_shapes": {
+        "weight": [
+          512,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.11.self_attn.o_proj",
+      "short_name": "o_proj",
+      "class_name": "Linear",
+      "layer_idx": 11,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.11.self_attn.q_norm",
+      "short_name": "q_norm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 11,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 256,
+      "direct_param_shapes": {
+        "weight": [
+          256
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.11.self_attn.k_norm",
+      "short_name": "k_norm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 11,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 256,
+      "direct_param_shapes": {
+        "weight": [
+          256
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.11.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 11,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.11.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 11,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.11.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 11,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.11.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 11,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.11.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 11,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.11.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 11,
+      "layer_type": "full_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.11.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 11,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.12",
+      "short_name": "12",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 12,
+      "layer_type": "linear_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.12.linear_attn",
+      "short_name": "linear_attn",
+      "class_name": "Qwen3_5GatedDeltaNet",
+      "layer_idx": 12,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 32,
+      "direct_param_shapes": {
+        "dt_bias": [
+          16
+        ],
+        "A_log": [
+          16
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.12.linear_attn.act",
+      "short_name": "act",
+      "class_name": "SiLUActivation",
+      "layer_idx": 12,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.12.linear_attn.conv1d",
+      "short_name": "conv1d",
+      "class_name": "Conv1d",
+      "layer_idx": 12,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 24576,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1,
+          4
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.12.linear_attn.norm",
+      "short_name": "norm",
+      "class_name": "Qwen3_5RMSNormGated",
+      "layer_idx": 12,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 128,
+      "direct_param_shapes": {
+        "weight": [
+          128
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.12.linear_attn.out_proj",
+      "short_name": "out_proj",
+      "class_name": "Linear",
+      "layer_idx": 12,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.12.linear_attn.in_proj_qkv",
+      "short_name": "in_proj_qkv",
+      "class_name": "Linear",
+      "layer_idx": 12,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 6291456,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.12.linear_attn.in_proj_z",
+      "short_name": "in_proj_z",
+      "class_name": "Linear",
+      "layer_idx": 12,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          2048,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.12.linear_attn.in_proj_b",
+      "short_name": "in_proj_b",
+      "class_name": "Linear",
+      "layer_idx": 12,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.12.linear_attn.in_proj_a",
+      "short_name": "in_proj_a",
+      "class_name": "Linear",
+      "layer_idx": 12,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.12.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 12,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.12.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 12,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.12.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 12,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.12.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 12,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.12.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 12,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.12.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 12,
+      "layer_type": "linear_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.12.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 12,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.13",
+      "short_name": "13",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 13,
+      "layer_type": "linear_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.13.linear_attn",
+      "short_name": "linear_attn",
+      "class_name": "Qwen3_5GatedDeltaNet",
+      "layer_idx": 13,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 32,
+      "direct_param_shapes": {
+        "dt_bias": [
+          16
+        ],
+        "A_log": [
+          16
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.13.linear_attn.act",
+      "short_name": "act",
+      "class_name": "SiLUActivation",
+      "layer_idx": 13,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.13.linear_attn.conv1d",
+      "short_name": "conv1d",
+      "class_name": "Conv1d",
+      "layer_idx": 13,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 24576,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1,
+          4
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.13.linear_attn.norm",
+      "short_name": "norm",
+      "class_name": "Qwen3_5RMSNormGated",
+      "layer_idx": 13,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 128,
+      "direct_param_shapes": {
+        "weight": [
+          128
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.13.linear_attn.out_proj",
+      "short_name": "out_proj",
+      "class_name": "Linear",
+      "layer_idx": 13,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.13.linear_attn.in_proj_qkv",
+      "short_name": "in_proj_qkv",
+      "class_name": "Linear",
+      "layer_idx": 13,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 6291456,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.13.linear_attn.in_proj_z",
+      "short_name": "in_proj_z",
+      "class_name": "Linear",
+      "layer_idx": 13,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          2048,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.13.linear_attn.in_proj_b",
+      "short_name": "in_proj_b",
+      "class_name": "Linear",
+      "layer_idx": 13,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.13.linear_attn.in_proj_a",
+      "short_name": "in_proj_a",
+      "class_name": "Linear",
+      "layer_idx": 13,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.13.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 13,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.13.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 13,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.13.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 13,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.13.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 13,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.13.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 13,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.13.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 13,
+      "layer_type": "linear_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.13.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 13,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.14",
+      "short_name": "14",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 14,
+      "layer_type": "linear_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.14.linear_attn",
+      "short_name": "linear_attn",
+      "class_name": "Qwen3_5GatedDeltaNet",
+      "layer_idx": 14,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 32,
+      "direct_param_shapes": {
+        "dt_bias": [
+          16
+        ],
+        "A_log": [
+          16
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.14.linear_attn.act",
+      "short_name": "act",
+      "class_name": "SiLUActivation",
+      "layer_idx": 14,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.14.linear_attn.conv1d",
+      "short_name": "conv1d",
+      "class_name": "Conv1d",
+      "layer_idx": 14,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 24576,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1,
+          4
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.14.linear_attn.norm",
+      "short_name": "norm",
+      "class_name": "Qwen3_5RMSNormGated",
+      "layer_idx": 14,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 128,
+      "direct_param_shapes": {
+        "weight": [
+          128
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.14.linear_attn.out_proj",
+      "short_name": "out_proj",
+      "class_name": "Linear",
+      "layer_idx": 14,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.14.linear_attn.in_proj_qkv",
+      "short_name": "in_proj_qkv",
+      "class_name": "Linear",
+      "layer_idx": 14,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 6291456,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.14.linear_attn.in_proj_z",
+      "short_name": "in_proj_z",
+      "class_name": "Linear",
+      "layer_idx": 14,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          2048,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.14.linear_attn.in_proj_b",
+      "short_name": "in_proj_b",
+      "class_name": "Linear",
+      "layer_idx": 14,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.14.linear_attn.in_proj_a",
+      "short_name": "in_proj_a",
+      "class_name": "Linear",
+      "layer_idx": 14,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.14.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 14,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.14.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 14,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.14.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 14,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.14.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 14,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.14.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 14,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.14.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 14,
+      "layer_type": "linear_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.14.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 14,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.15",
+      "short_name": "15",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 15,
+      "layer_type": "full_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.15.self_attn",
+      "short_name": "self_attn",
+      "class_name": "Qwen3_5Attention",
+      "layer_idx": 15,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.15.self_attn.q_proj",
+      "short_name": "q_proj",
+      "class_name": "Linear",
+      "layer_idx": 15,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 4194304,
+      "direct_param_shapes": {
+        "weight": [
+          4096,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.15.self_attn.k_proj",
+      "short_name": "k_proj",
+      "class_name": "Linear",
+      "layer_idx": 15,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 524288,
+      "direct_param_shapes": {
+        "weight": [
+          512,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.15.self_attn.v_proj",
+      "short_name": "v_proj",
+      "class_name": "Linear",
+      "layer_idx": 15,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 524288,
+      "direct_param_shapes": {
+        "weight": [
+          512,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.15.self_attn.o_proj",
+      "short_name": "o_proj",
+      "class_name": "Linear",
+      "layer_idx": 15,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.15.self_attn.q_norm",
+      "short_name": "q_norm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 15,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 256,
+      "direct_param_shapes": {
+        "weight": [
+          256
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.15.self_attn.k_norm",
+      "short_name": "k_norm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 15,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 256,
+      "direct_param_shapes": {
+        "weight": [
+          256
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.15.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 15,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.15.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 15,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.15.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 15,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.15.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 15,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.15.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 15,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.15.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 15,
+      "layer_type": "full_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.15.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 15,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.16",
+      "short_name": "16",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 16,
+      "layer_type": "linear_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.16.linear_attn",
+      "short_name": "linear_attn",
+      "class_name": "Qwen3_5GatedDeltaNet",
+      "layer_idx": 16,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 32,
+      "direct_param_shapes": {
+        "dt_bias": [
+          16
+        ],
+        "A_log": [
+          16
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.16.linear_attn.act",
+      "short_name": "act",
+      "class_name": "SiLUActivation",
+      "layer_idx": 16,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.16.linear_attn.conv1d",
+      "short_name": "conv1d",
+      "class_name": "Conv1d",
+      "layer_idx": 16,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 24576,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1,
+          4
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.16.linear_attn.norm",
+      "short_name": "norm",
+      "class_name": "Qwen3_5RMSNormGated",
+      "layer_idx": 16,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 128,
+      "direct_param_shapes": {
+        "weight": [
+          128
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.16.linear_attn.out_proj",
+      "short_name": "out_proj",
+      "class_name": "Linear",
+      "layer_idx": 16,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.16.linear_attn.in_proj_qkv",
+      "short_name": "in_proj_qkv",
+      "class_name": "Linear",
+      "layer_idx": 16,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 6291456,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.16.linear_attn.in_proj_z",
+      "short_name": "in_proj_z",
+      "class_name": "Linear",
+      "layer_idx": 16,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          2048,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.16.linear_attn.in_proj_b",
+      "short_name": "in_proj_b",
+      "class_name": "Linear",
+      "layer_idx": 16,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.16.linear_attn.in_proj_a",
+      "short_name": "in_proj_a",
+      "class_name": "Linear",
+      "layer_idx": 16,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.16.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 16,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.16.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 16,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.16.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 16,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.16.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 16,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.16.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 16,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.16.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 16,
+      "layer_type": "linear_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.16.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 16,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.17",
+      "short_name": "17",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 17,
+      "layer_type": "linear_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.17.linear_attn",
+      "short_name": "linear_attn",
+      "class_name": "Qwen3_5GatedDeltaNet",
+      "layer_idx": 17,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 32,
+      "direct_param_shapes": {
+        "dt_bias": [
+          16
+        ],
+        "A_log": [
+          16
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.17.linear_attn.act",
+      "short_name": "act",
+      "class_name": "SiLUActivation",
+      "layer_idx": 17,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.17.linear_attn.conv1d",
+      "short_name": "conv1d",
+      "class_name": "Conv1d",
+      "layer_idx": 17,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 24576,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1,
+          4
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.17.linear_attn.norm",
+      "short_name": "norm",
+      "class_name": "Qwen3_5RMSNormGated",
+      "layer_idx": 17,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 128,
+      "direct_param_shapes": {
+        "weight": [
+          128
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.17.linear_attn.out_proj",
+      "short_name": "out_proj",
+      "class_name": "Linear",
+      "layer_idx": 17,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.17.linear_attn.in_proj_qkv",
+      "short_name": "in_proj_qkv",
+      "class_name": "Linear",
+      "layer_idx": 17,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 6291456,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.17.linear_attn.in_proj_z",
+      "short_name": "in_proj_z",
+      "class_name": "Linear",
+      "layer_idx": 17,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          2048,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.17.linear_attn.in_proj_b",
+      "short_name": "in_proj_b",
+      "class_name": "Linear",
+      "layer_idx": 17,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.17.linear_attn.in_proj_a",
+      "short_name": "in_proj_a",
+      "class_name": "Linear",
+      "layer_idx": 17,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.17.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 17,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.17.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 17,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.17.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 17,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.17.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 17,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.17.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 17,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.17.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 17,
+      "layer_type": "linear_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.17.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 17,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.18",
+      "short_name": "18",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 18,
+      "layer_type": "linear_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.18.linear_attn",
+      "short_name": "linear_attn",
+      "class_name": "Qwen3_5GatedDeltaNet",
+      "layer_idx": 18,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 32,
+      "direct_param_shapes": {
+        "dt_bias": [
+          16
+        ],
+        "A_log": [
+          16
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.18.linear_attn.act",
+      "short_name": "act",
+      "class_name": "SiLUActivation",
+      "layer_idx": 18,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.18.linear_attn.conv1d",
+      "short_name": "conv1d",
+      "class_name": "Conv1d",
+      "layer_idx": 18,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 24576,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1,
+          4
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.18.linear_attn.norm",
+      "short_name": "norm",
+      "class_name": "Qwen3_5RMSNormGated",
+      "layer_idx": 18,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 128,
+      "direct_param_shapes": {
+        "weight": [
+          128
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.18.linear_attn.out_proj",
+      "short_name": "out_proj",
+      "class_name": "Linear",
+      "layer_idx": 18,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.18.linear_attn.in_proj_qkv",
+      "short_name": "in_proj_qkv",
+      "class_name": "Linear",
+      "layer_idx": 18,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 6291456,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.18.linear_attn.in_proj_z",
+      "short_name": "in_proj_z",
+      "class_name": "Linear",
+      "layer_idx": 18,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          2048,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.18.linear_attn.in_proj_b",
+      "short_name": "in_proj_b",
+      "class_name": "Linear",
+      "layer_idx": 18,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.18.linear_attn.in_proj_a",
+      "short_name": "in_proj_a",
+      "class_name": "Linear",
+      "layer_idx": 18,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.18.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 18,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.18.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 18,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.18.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 18,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.18.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 18,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.18.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 18,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.18.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 18,
+      "layer_type": "linear_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.18.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 18,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.19",
+      "short_name": "19",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 19,
+      "layer_type": "full_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.19.self_attn",
+      "short_name": "self_attn",
+      "class_name": "Qwen3_5Attention",
+      "layer_idx": 19,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.19.self_attn.q_proj",
+      "short_name": "q_proj",
+      "class_name": "Linear",
+      "layer_idx": 19,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 4194304,
+      "direct_param_shapes": {
+        "weight": [
+          4096,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.19.self_attn.k_proj",
+      "short_name": "k_proj",
+      "class_name": "Linear",
+      "layer_idx": 19,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 524288,
+      "direct_param_shapes": {
+        "weight": [
+          512,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.19.self_attn.v_proj",
+      "short_name": "v_proj",
+      "class_name": "Linear",
+      "layer_idx": 19,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 524288,
+      "direct_param_shapes": {
+        "weight": [
+          512,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.19.self_attn.o_proj",
+      "short_name": "o_proj",
+      "class_name": "Linear",
+      "layer_idx": 19,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.19.self_attn.q_norm",
+      "short_name": "q_norm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 19,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 256,
+      "direct_param_shapes": {
+        "weight": [
+          256
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.19.self_attn.k_norm",
+      "short_name": "k_norm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 19,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 256,
+      "direct_param_shapes": {
+        "weight": [
+          256
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.19.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 19,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.19.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 19,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.19.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 19,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.19.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 19,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.19.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 19,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.19.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 19,
+      "layer_type": "full_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.19.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 19,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.20",
+      "short_name": "20",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 20,
+      "layer_type": "linear_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.20.linear_attn",
+      "short_name": "linear_attn",
+      "class_name": "Qwen3_5GatedDeltaNet",
+      "layer_idx": 20,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 32,
+      "direct_param_shapes": {
+        "dt_bias": [
+          16
+        ],
+        "A_log": [
+          16
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.20.linear_attn.act",
+      "short_name": "act",
+      "class_name": "SiLUActivation",
+      "layer_idx": 20,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.20.linear_attn.conv1d",
+      "short_name": "conv1d",
+      "class_name": "Conv1d",
+      "layer_idx": 20,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 24576,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1,
+          4
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.20.linear_attn.norm",
+      "short_name": "norm",
+      "class_name": "Qwen3_5RMSNormGated",
+      "layer_idx": 20,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 128,
+      "direct_param_shapes": {
+        "weight": [
+          128
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.20.linear_attn.out_proj",
+      "short_name": "out_proj",
+      "class_name": "Linear",
+      "layer_idx": 20,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.20.linear_attn.in_proj_qkv",
+      "short_name": "in_proj_qkv",
+      "class_name": "Linear",
+      "layer_idx": 20,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 6291456,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.20.linear_attn.in_proj_z",
+      "short_name": "in_proj_z",
+      "class_name": "Linear",
+      "layer_idx": 20,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          2048,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.20.linear_attn.in_proj_b",
+      "short_name": "in_proj_b",
+      "class_name": "Linear",
+      "layer_idx": 20,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.20.linear_attn.in_proj_a",
+      "short_name": "in_proj_a",
+      "class_name": "Linear",
+      "layer_idx": 20,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.20.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 20,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.20.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 20,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.20.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 20,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.20.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 20,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.20.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 20,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.20.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 20,
+      "layer_type": "linear_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.20.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 20,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.21",
+      "short_name": "21",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 21,
+      "layer_type": "linear_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.21.linear_attn",
+      "short_name": "linear_attn",
+      "class_name": "Qwen3_5GatedDeltaNet",
+      "layer_idx": 21,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 32,
+      "direct_param_shapes": {
+        "dt_bias": [
+          16
+        ],
+        "A_log": [
+          16
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.21.linear_attn.act",
+      "short_name": "act",
+      "class_name": "SiLUActivation",
+      "layer_idx": 21,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.21.linear_attn.conv1d",
+      "short_name": "conv1d",
+      "class_name": "Conv1d",
+      "layer_idx": 21,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 24576,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1,
+          4
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.21.linear_attn.norm",
+      "short_name": "norm",
+      "class_name": "Qwen3_5RMSNormGated",
+      "layer_idx": 21,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 128,
+      "direct_param_shapes": {
+        "weight": [
+          128
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.21.linear_attn.out_proj",
+      "short_name": "out_proj",
+      "class_name": "Linear",
+      "layer_idx": 21,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.21.linear_attn.in_proj_qkv",
+      "short_name": "in_proj_qkv",
+      "class_name": "Linear",
+      "layer_idx": 21,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 6291456,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.21.linear_attn.in_proj_z",
+      "short_name": "in_proj_z",
+      "class_name": "Linear",
+      "layer_idx": 21,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          2048,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.21.linear_attn.in_proj_b",
+      "short_name": "in_proj_b",
+      "class_name": "Linear",
+      "layer_idx": 21,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.21.linear_attn.in_proj_a",
+      "short_name": "in_proj_a",
+      "class_name": "Linear",
+      "layer_idx": 21,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.21.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 21,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.21.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 21,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.21.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 21,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.21.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 21,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.21.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 21,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.21.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 21,
+      "layer_type": "linear_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.21.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 21,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.22",
+      "short_name": "22",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 22,
+      "layer_type": "linear_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.22.linear_attn",
+      "short_name": "linear_attn",
+      "class_name": "Qwen3_5GatedDeltaNet",
+      "layer_idx": 22,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 32,
+      "direct_param_shapes": {
+        "dt_bias": [
+          16
+        ],
+        "A_log": [
+          16
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.22.linear_attn.act",
+      "short_name": "act",
+      "class_name": "SiLUActivation",
+      "layer_idx": 22,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.22.linear_attn.conv1d",
+      "short_name": "conv1d",
+      "class_name": "Conv1d",
+      "layer_idx": 22,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 24576,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1,
+          4
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.22.linear_attn.norm",
+      "short_name": "norm",
+      "class_name": "Qwen3_5RMSNormGated",
+      "layer_idx": 22,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 128,
+      "direct_param_shapes": {
+        "weight": [
+          128
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.22.linear_attn.out_proj",
+      "short_name": "out_proj",
+      "class_name": "Linear",
+      "layer_idx": 22,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.22.linear_attn.in_proj_qkv",
+      "short_name": "in_proj_qkv",
+      "class_name": "Linear",
+      "layer_idx": 22,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 6291456,
+      "direct_param_shapes": {
+        "weight": [
+          6144,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.22.linear_attn.in_proj_z",
+      "short_name": "in_proj_z",
+      "class_name": "Linear",
+      "layer_idx": 22,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          2048,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.22.linear_attn.in_proj_b",
+      "short_name": "in_proj_b",
+      "class_name": "Linear",
+      "layer_idx": 22,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.22.linear_attn.in_proj_a",
+      "short_name": "in_proj_a",
+      "class_name": "Linear",
+      "layer_idx": 22,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 16384,
+      "direct_param_shapes": {
+        "weight": [
+          16,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.22.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 22,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.22.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 22,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.22.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 22,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.22.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 22,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.22.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 22,
+      "layer_type": "linear_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.22.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 22,
+      "layer_type": "linear_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.22.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 22,
+      "layer_type": "linear_attention",
+      "component": "gdn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.23",
+      "short_name": "23",
+      "class_name": "Qwen3_5DecoderLayer",
+      "layer_idx": 23,
+      "layer_type": "full_attention",
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.23.self_attn",
+      "short_name": "self_attn",
+      "class_name": "Qwen3_5Attention",
+      "layer_idx": 23,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.23.self_attn.q_proj",
+      "short_name": "q_proj",
+      "class_name": "Linear",
+      "layer_idx": 23,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 4194304,
+      "direct_param_shapes": {
+        "weight": [
+          4096,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.23.self_attn.k_proj",
+      "short_name": "k_proj",
+      "class_name": "Linear",
+      "layer_idx": 23,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 524288,
+      "direct_param_shapes": {
+        "weight": [
+          512,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.23.self_attn.v_proj",
+      "short_name": "v_proj",
+      "class_name": "Linear",
+      "layer_idx": 23,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 524288,
+      "direct_param_shapes": {
+        "weight": [
+          512,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.23.self_attn.o_proj",
+      "short_name": "o_proj",
+      "class_name": "Linear",
+      "layer_idx": 23,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 2097152,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          2048
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.23.self_attn.q_norm",
+      "short_name": "q_norm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 23,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 256,
+      "direct_param_shapes": {
+        "weight": [
+          256
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.23.self_attn.k_norm",
+      "short_name": "k_norm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 23,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 256,
+      "direct_param_shapes": {
+        "weight": [
+          256
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.23.mlp",
+      "short_name": "mlp",
+      "class_name": "Qwen3_5MLP",
+      "layer_idx": 23,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.23.mlp.gate_proj",
+      "short_name": "gate_proj",
+      "class_name": "Linear",
+      "layer_idx": 23,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.23.mlp.up_proj",
+      "short_name": "up_proj",
+      "class_name": "Linear",
+      "layer_idx": 23,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          3584,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.23.mlp.down_proj",
+      "short_name": "down_proj",
+      "class_name": "Linear",
+      "layer_idx": 23,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 3670016,
+      "direct_param_shapes": {
+        "weight": [
+          1024,
+          3584
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.23.mlp.act_fn",
+      "short_name": "act_fn",
+      "class_name": "SiLUActivation",
+      "layer_idx": 23,
+      "layer_type": "full_attention",
+      "component": "mlp",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.23.input_layernorm",
+      "short_name": "input_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 23,
+      "layer_type": "full_attention",
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.layers.23.post_attention_layernorm",
+      "short_name": "post_attention_layernorm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": 23,
+      "layer_type": "full_attention",
+      "component": "softmax_attn",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.norm",
+      "short_name": "norm",
+      "class_name": "Qwen3_5RMSNorm",
+      "layer_idx": null,
+      "layer_type": null,
+      "component": "norm",
+      "direct_param_count": 1024,
+      "direct_param_shapes": {
+        "weight": [
+          1024
+        ]
+      },
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "model.rotary_emb",
+      "short_name": "rotary_emb",
+      "class_name": "Qwen3_5TextRotaryEmbedding",
+      "layer_idx": null,
+      "layer_type": null,
+      "component": "other",
+      "direct_param_count": 0,
+      "direct_param_shapes": {},
+      "lora_eligible": false,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    },
+    {
+      "full_name": "lm_head",
+      "short_name": "lm_head",
+      "class_name": "Linear",
+      "layer_idx": null,
+      "layer_type": null,
+      "component": "lm_head",
+      "direct_param_count": 254279680,
+      "direct_param_shapes": {
+        "weight": [
+          248320,
+          1024
+        ]
+      },
+      "lora_eligible": true,
+      "exclude_reason": null,
+      "target_parameter_candidates": []
+    }
+  ],
+  "layer_prefix_component": {
+    "model.layers.0.linear_attn": "gdn",
+    "model.layers.0.mlp": "mlp",
+    "model.layers.0.post_attention_layernorm": "gdn",
+    "model.layers.1.linear_attn": "gdn",
+    "model.layers.1.mlp": "mlp",
+    "model.layers.1.post_attention_layernorm": "gdn",
+    "model.layers.2.linear_attn": "gdn",
+    "model.layers.2.mlp": "mlp",
+    "model.layers.2.post_attention_layernorm": "gdn",
+    "model.layers.3.self_attn": "softmax_attn",
+    "model.layers.3.mlp": "mlp",
+    "model.layers.3.post_attention_layernorm": "softmax_attn",
+    "model.layers.4.linear_attn": "gdn",
+    "model.layers.4.mlp": "mlp",
+    "model.layers.4.post_attention_layernorm": "gdn",
+    "model.layers.5.linear_attn": "gdn",
+    "model.layers.5.mlp": "mlp",
+    "model.layers.5.post_attention_layernorm": "gdn",
+    "model.layers.6.linear_attn": "gdn",
+    "model.layers.6.mlp": "mlp",
+    "model.layers.6.post_attention_layernorm": "gdn",
+    "model.layers.7.self_attn": "softmax_attn",
+    "model.layers.7.mlp": "mlp",
+    "model.layers.7.post_attention_layernorm": "softmax_attn",
+    "model.layers.8.linear_attn": "gdn",
+    "model.layers.8.mlp": "mlp",
+    "model.layers.8.post_attention_layernorm": "gdn",
+    "model.layers.9.linear_attn": "gdn",
+    "model.layers.9.mlp": "mlp",
+    "model.layers.9.post_attention_layernorm": "gdn",
+    "model.layers.10.linear_attn": "gdn",
+    "model.layers.10.mlp": "mlp",
+    "model.layers.10.post_attention_layernorm": "gdn",
+    "model.layers.11.self_attn": "softmax_attn",
+    "model.layers.11.mlp": "mlp",
+    "model.layers.11.post_attention_layernorm": "softmax_attn",
+    "model.layers.12.linear_attn": "gdn",
+    "model.layers.12.mlp": "mlp",
+    "model.layers.12.post_attention_layernorm": "gdn",
+    "model.layers.13.linear_attn": "gdn",
+    "model.layers.13.mlp": "mlp",
+    "model.layers.13.post_attention_layernorm": "gdn",
+    "model.layers.14.linear_attn": "gdn",
+    "model.layers.14.mlp": "mlp",
+    "model.layers.14.post_attention_layernorm": "gdn",
+    "model.layers.15.self_attn": "softmax_attn",
+    "model.layers.15.mlp": "mlp",
+    "model.layers.15.post_attention_layernorm": "softmax_attn",
+    "model.layers.16.linear_attn": "gdn",
+    "model.layers.16.mlp": "mlp",
+    "model.layers.16.post_attention_layernorm": "gdn",
+    "model.layers.17.linear_attn": "gdn",
+    "model.layers.17.mlp": "mlp",
+    "model.layers.17.post_attention_layernorm": "gdn",
+    "model.layers.18.linear_attn": "gdn",
+    "model.layers.18.mlp": "mlp",
+    "model.layers.18.post_attention_layernorm": "gdn",
+    "model.layers.19.self_attn": "softmax_attn",
+    "model.layers.19.mlp": "mlp",
+    "model.layers.19.post_attention_layernorm": "softmax_attn",
+    "model.layers.20.linear_attn": "gdn",
+    "model.layers.20.mlp": "mlp",
+    "model.layers.20.post_attention_layernorm": "gdn",
+    "model.layers.21.linear_attn": "gdn",
+    "model.layers.21.mlp": "mlp",
+    "model.layers.21.post_attention_layernorm": "gdn",
+    "model.layers.22.linear_attn": "gdn",
+    "model.layers.22.mlp": "mlp",
+    "model.layers.22.post_attention_layernorm": "gdn",
+    "model.layers.23.self_attn": "softmax_attn",
+    "model.layers.23.mlp": "mlp",
+    "model.layers.23.post_attention_layernorm": "softmax_attn"
+  },
+  "tokenizer_class": "TokenizersBackend",
+  "model_class": "Qwen3_5ForCausalLM"
+}

@@ -1,0 +1,7 @@
+model_key,condition,trainable_params,pct_trainable,num_expected_hosts,num_actual_hosts,missing_hosts,unexpected_hosts,status
+qwen3_5_0_8b_base,all_layers,10822656,1.418033759474124,186,186,0,0,complete
+qwen3_5_0_8b_base,softmax_only,1081344,0.14351437101573705,24,24,0,0,complete
+qwen3_5_0_8b_base,gdn_only,4432896,0.5857220112123009,90,90,0,0,complete
+qwen3_5_0_8b_base,mlp_only,5308416,0.7005946827816508,72,72,0,0,complete
+qwen3_5_0_8b_base,softmax_plus_mlp,6389760,0.8421066126877228,96,96,0,0,complete
+qwen3_5_0_8b_base,gdn_plus_mlp,9741312,1.2781620693179214,162,162,0,0,complete

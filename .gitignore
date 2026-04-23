@@ -1,0 +1,44 @@
+# ── Python ────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# ── Jupyter ───────────────────────────────────────────────────
+.ipynb_checkpoints/
+
+# ── Experiment artifacts (too large / reproducible) ──────────
+checkpoints/
+data_cache/
+models/
+analysis_cache/
+module_trees/
+logs/
+*.pkl
+*.safetensors
+*.bin
+
+# ── Claude Code ───────────────────────────────────────────────
+.claude/
+
+# ── OS ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── LaTeX source ──────────────────────────────────────────────
+*.tex
+
+# ── LaTeX build ───────────────────────────────────────────────
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.bbl
+paper/*.blg
+paper/*.pdf
+paper/*.toc
+paper/*.lof
+paper/*.lot
+paper/*.spl
+paper/*.synctex.gz

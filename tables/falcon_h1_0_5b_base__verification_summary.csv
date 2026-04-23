@@ -1,0 +1,7 @@
+model_key,condition,trainable_params,pct_trainable,num_expected_hosts,num_actual_hosts,missing_hosts,unexpected_hosts,status
+falcon_h1_0_5b_base,all_eligible,11466496,2.1518067188412497,289,289,0,0,complete
+falcon_h1_0_5b_base,attention_only,2211840,0.4224108254507656,108,108,0,0,complete
+falcon_h1_0_5b_base,ssm_only,2520576,0.4810886793484219,36,36,0,0,complete
+falcon_h1_0_5b_base,mlp_only,5308416,1.0078259488085803,108,108,0,0,complete
+falcon_h1_0_5b_base,attention_plus_mlp,7520256,1.421782970100317,216,216,0,0,complete
+falcon_h1_0_5b_base,ssm_plus_mlp,7828992,1.4792892789438237,144,144,0,0,complete

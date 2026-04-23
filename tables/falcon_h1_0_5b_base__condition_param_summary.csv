@@ -1,0 +1,7 @@
+model_key,condition,num_target_modules,num_target_parameters,estimated_direct_params_in_targets,estimated_pct_of_model_direct_params,notes
+falcon_h1_0_5b_base,all_eligible,289,0,430817280,82.6252599330911,Full LoRA baseline respecting Falcon-H1 exclusions.
+falcon_h1_0_5b_base,attention_only,108,0,28311552,5.429794605985223,Attention Q/K/V branch only.
+falcon_h1_0_5b_base,attention_plus_mlp,216,0,254803968,48.86815145386701,"Attention + MLP, skip SSM."
+falcon_h1_0_5b_base,mlp_only,108,0,226492416,43.438356847881785,MLP-only control.
+falcon_h1_0_5b_base,ssm_only,36,0,123568128,23.698791040706336,SSM-branch eligible modules only; excludes conv1d and out_proj.
+falcon_h1_0_5b_base,ssm_plus_mlp,144,0,350060544,67.13714788858812,"SSM + MLP, skip attention."

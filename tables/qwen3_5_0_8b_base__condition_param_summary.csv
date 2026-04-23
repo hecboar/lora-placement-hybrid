@@ -1,0 +1,7 @@
+model_key,condition,num_target_modules,num_target_parameters,estimated_direct_params_in_targets,estimated_pct_of_model_direct_params,notes
+qwen3_5_0_8b_base,all_layers,186,0,497614848,49.4316420841386,"Full LoRA baseline across softmax attention, GDN, and MLP modules."
+qwen3_5_0_8b_base,gdn_only,90,0,189333504,18.807851176225,GDN / linear-attention component only.
+qwen3_5_0_8b_base,gdn_plus_mlp,162,0,453574656,45.056814811579514,"Complementary config: GDN + MLP, skip softmax attention."
+qwen3_5_0_8b_base,mlp_only,72,0,264241152,26.248963635354514,MLP-only control.
+qwen3_5_0_8b_base,softmax_only,24,0,44040192,4.374827272559086,Softmax-attention projections only in full-attention layers.
+qwen3_5_0_8b_base,softmax_plus_mlp,96,0,308281344,30.6237909079136,"Practical config: attention + MLP, skip GDN."
