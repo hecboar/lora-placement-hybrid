@@ -13,6 +13,21 @@ The study is **single-seed (3407)**, two-model, and sub-billion-parameter. Resul
 
 A single training run takes approximately **15–40 minutes** depending on model and hardware. The full sweep (2 models × 6 placement conditions × 3 training domains, plus baselines and evaluation) is on the order of **~25–30 GPU-hours** on a single 24 GB GPU.
 
+## Software environment
+
+Exact versions captured at run time (`environment_snapshot.json`, experiment date 2026-04-20, NVIDIA RTX 4090, CUDA 12.4, bf16):
+
+| Component | Version |
+|-----------|---------|
+| Python | 3.11.10 |
+| PyTorch | 2.4.1 (+cu124) |
+| Transformers | 5.6.0.dev0 |
+| PEFT | 0.19.2.dev0 (adapter metadata: 0.18.2.dev0@07a1db6) |
+| TRL | 1.3.0.dev0 |
+| Datasets | 4.8.4 |
+
+> **Pre-release builds.** Transformers, PEFT, and TRL were `.dev0` builds installed from source: at the experiment date, Qwen3.5 and Falcon-H1 support was only available in development versions. The exact `.dev0` strings may not resolve via PyPI; install from the matching upstream git commits, or use the current stable releases that support these architectures. `accelerate`, `bitsandbytes`, `numpy`, `pandas`, `scipy`, `scikit-learn`, and `matplotlib` were not captured in the snapshot — pin them from your environment if exact reproducibility is required. See `requirements.txt` / `environment.yml`.
+
 ## Base models
 
 | Key | Hugging Face identifier | Revision / commit |
@@ -100,4 +115,4 @@ In the notebook:
 3. Run the experiment driver cell in the order indicated in the final cell. The pipeline is checkpoint-safe: completed experiments auto-skip, so a disconnected runtime can resume by re-running the setup cells.
 4. Aggregation cells regenerate the tables in `tables/`, the statistics in `stats/`, and the figures in `figures/`.
 
-> **Note on exact package versions.** The notebook records library versions at runtime via `*.__version__`. Pin the versions observed in your environment when archiving for full bit-level reproducibility (Python 3.10 was used; see `requirements.txt` for the dependency list).
+> **Note on exact package versions.** The exact run-time versions are recorded in `environment_snapshot.json` and the Software environment table above (Python 3.11.10). The notebook also records library versions at runtime via `*.__version__`. See `requirements.txt` / `environment.yml` for the full dependency list, and note the pre-release (`.dev0`) caveat above.

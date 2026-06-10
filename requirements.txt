@@ -1,30 +1,36 @@
 # Python dependencies for "Where Should LoRA Go?"
-# Tested with Python 3.10.
 #
-# Versions are intentionally left unpinned / approximate: the experiments were
-# run in Google Colab Pro and RunPod environments and exact versions were not
-# captured at run time (the notebook records library versions via __version__).
-# Before archiving for full reproducibility, REPLACE the comment markers below
-# with the EXACT versions observed in your experiment environment
-# (e.g. transformers==X.Y.Z).
+# Versions below are the EXACT versions captured at run time in
+# logs/environment_snapshot.json (experiment date 2026-04-20),
+# on Python 3.11.10, NVIDIA RTX 4090, CUDA 12.4, bf16.
+#
+# IMPORTANT: transformers / peft / trl were PRE-RELEASE (.dev0) builds installed
+# from source. At the time of the experiments, support for the Qwen3.5 and
+# Falcon-H1 architectures was only available in development builds. Pinning these
+# exact ".dev0" strings via PyPI may not resolve; install them from the matching
+# upstream git commits, or use the current stable releases that support these
+# architectures. The dev strings are recorded here as the source of truth.
 
-# --- Core deep-learning stack ---
-torch                 # >=2.1  # replace with exact version from experiment environment
-transformers          # replace with exact version from experiment environment
-peft                  # replace with exact version from experiment environment
-accelerate            # replace with exact version from experiment environment
-datasets              # replace with exact version from experiment environment
-bitsandbytes          # 8-bit Adam optimizer; replace with exact version
-trl                   # replace with exact version from experiment environment
+# --- Core deep-learning stack (exact run-time versions) ---
+torch==2.4.1                 # +cu124
+transformers==5.6.0.dev0     # pre-release; install from source (see note above)
+peft==0.19.2.dev0            # pre-release; adapter metadata shows 0.18.2.dev0@07a1db6
+trl==1.3.0.dev0              # pre-release; install from source (see note above)
+datasets==4.8.4
+
+# --- Not captured in the environment snapshot ---
+# (the 8-bit Adam optimizer requires bitsandbytes; pin from your environment)
+accelerate                   # replace with exact version from experiment environment
+bitsandbytes                 # 8-bit Adam optimizer; replace with exact version
 
 # --- Scientific / data ---
-numpy                 # replace with exact version from experiment environment
-pandas                # replace with exact version from experiment environment
-scipy                 # replace with exact version from experiment environment
-scikit-learn          # replace with exact version from experiment environment
+numpy                        # replace with exact version from experiment environment
+pandas                       # replace with exact version from experiment environment
+scipy                        # replace with exact version from experiment environment
+scikit-learn                 # replace with exact version from experiment environment
 
 # --- Plotting ---
-matplotlib            # replace with exact version from experiment environment
+matplotlib                   # replace with exact version from experiment environment
 
 # --- Utilities ---
 tqdm

@@ -11,7 +11,7 @@ Pre-submission and Zenodo-archival checklist for *"Where Should LoRA Go?"*
 - [x] HumanEval floor effect documented
 - [x] bootstrap settings documented
 - [ ] exact model revisions added (`Qwen/Qwen3.5-0.8B-Base`, `tiiuae/Falcon-H1-0.5B-Base` HF commit hashes)
-- [ ] exact package versions pinned in `requirements.txt` / `environment.yml`
+- [x] core package versions pinned from `environment_snapshot.json` (torch/transformers/peft/trl/datasets; Python 3.11.10) — secondary deps (accelerate, bitsandbytes, numpy, pandas, scipy, scikit-learn, matplotlib) still to pin
 - [ ] GitHub release created
 - [ ] Zenodo DOI created
 - [ ] DOI and commit hash inserted into manuscript
