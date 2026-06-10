@@ -1,0 +1,31 @@
+# Python dependencies for "Where Should LoRA Go?"
+# Tested with Python 3.10.
+#
+# Versions are intentionally left unpinned / approximate: the experiments were
+# run in Google Colab Pro and RunPod environments and exact versions were not
+# captured at run time (the notebook records library versions via __version__).
+# Before archiving for full reproducibility, REPLACE the comment markers below
+# with the EXACT versions observed in your experiment environment
+# (e.g. transformers==X.Y.Z).
+
+# --- Core deep-learning stack ---
+torch                 # >=2.1  # replace with exact version from experiment environment
+transformers          # replace with exact version from experiment environment
+peft                  # replace with exact version from experiment environment
+accelerate            # replace with exact version from experiment environment
+datasets              # replace with exact version from experiment environment
+bitsandbytes          # 8-bit Adam optimizer; replace with exact version
+trl                   # replace with exact version from experiment environment
+
+# --- Scientific / data ---
+numpy                 # replace with exact version from experiment environment
+pandas                # replace with exact version from experiment environment
+scipy                 # replace with exact version from experiment environment
+scikit-learn          # replace with exact version from experiment environment
+
+# --- Plotting ---
+matplotlib            # replace with exact version from experiment environment
+
+# --- Utilities ---
+tqdm
+jupyter

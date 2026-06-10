@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it as below."
+title: "Where Should LoRA Go? An Exploratory Study of Component-Type Placement for Parameter-Efficient Adaptation of Small Hybrid Language Models"
+type: software
+authors:
+  - family-names: "Borobia"
+    given-names: "Héctor"
+  - family-names: "Seguí-Mas"
+    given-names: "Elies"
+  - family-names: "Tormo-Carbó"
+    given-names: "Guillermina"
+year: 2026
+repository-code: "https://github.com/hecboar/lora-placement-hybrid"
+url: "https://github.com/hecboar/lora-placement-hybrid"
+license: MIT
+# DOI to be added after the Zenodo archive is created:
+doi: "[to be added after Zenodo archive]"
+notes: "Manuscript under review at PeerJ Computer Science. Single-seed (3407), two-model, sub-billion-parameter exploratory study."

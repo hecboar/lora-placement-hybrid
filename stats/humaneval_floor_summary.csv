@@ -1,0 +1,13 @@
+model_key,condition,train_dataset,n,correct,accuracy,wilson_low,wilson_high
+falcon_h1_0_5b_base,all_eligible,codealpaca,157,0,0.0,0.0,0.023883511433308864
+falcon_h1_0_5b_base,attention_only,codealpaca,164,0,0.0,0.0,0.022887425119427582
+falcon_h1_0_5b_base,attention_plus_mlp,codealpaca,164,0,0.0,0.0,0.022887425119427582
+falcon_h1_0_5b_base,mlp_only,codealpaca,164,0,0.0,0.0,0.022887425119427582
+falcon_h1_0_5b_base,ssm_only,codealpaca,164,0,0.0,0.0,0.022887425119427582
+falcon_h1_0_5b_base,ssm_plus_mlp,codealpaca,164,0,0.0,0.0,0.022887425119427582
+qwen3_5_0_8b_base,all_layers,codealpaca,164,0,0.0,0.0,0.022887425119427582
+qwen3_5_0_8b_base,gdn_only,codealpaca,164,0,0.0,0.0,0.022887425119427582
+qwen3_5_0_8b_base,gdn_plus_mlp,codealpaca,164,0,0.0,0.0,0.022887425119427582
+qwen3_5_0_8b_base,mlp_only,codealpaca,164,0,0.0,0.0,0.022887425119427582
+qwen3_5_0_8b_base,softmax_only,codealpaca,164,0,0.0,0.0,0.022887425119427582
+qwen3_5_0_8b_base,softmax_plus_mlp,codealpaca,164,0,0.0,0.0,0.022887425119427582

@@ -23,6 +23,9 @@ logs/
 # ── Claude Code ───────────────────────────────────────────────
 .claude/
 
+# ── Staging archives (not part of the release) ────────────────
+*.zip
+
 # ── OS ────────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db

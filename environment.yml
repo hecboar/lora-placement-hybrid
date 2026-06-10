@@ -1,0 +1,33 @@
+# Conda environment for "Where Should LoRA Go?"
+# Tested with Python 3.10.
+#
+# Pip-installable ML packages (torch, transformers, peft, ...) are listed under
+# the pip section because they are most reliably installed from PyPI with CUDA
+# wheels. Versions are left approximate; REPLACE with the EXACT versions from
+# your experiment environment before archiving for full reproducibility.
+
+name: lora-placement-hybrid
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      # --- Core deep-learning stack ---
+      - torch          # >=2.1  # replace with exact version from experiment environment
+      - transformers   # replace with exact version
+      - peft           # replace with exact version
+      - accelerate     # replace with exact version
+      - datasets       # replace with exact version
+      - bitsandbytes   # replace with exact version
+      - trl            # replace with exact version
+      # --- Scientific / data ---
+      - numpy          # replace with exact version
+      - pandas         # replace with exact version
+      - scipy          # replace with exact version
+      - scikit-learn   # replace with exact version
+      # --- Plotting ---
+      - matplotlib     # replace with exact version
+      # --- Utilities ---
+      - tqdm
+      - jupyter
