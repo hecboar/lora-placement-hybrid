@@ -32,11 +32,8 @@ The following derived artifacts are released in full:
 
 ## Archival identifiers
 
-The following placeholders **must be filled before submission**:
-
-```
-Zenodo DOI: [to be added before submission]
-Git commit: [to be added before submission]
-```
-
-Once the Zenodo archive is created, the DOI and the exact Git commit hash will be inserted here, in `README.md`, in `CITATION.cff`, and in the manuscript.
+The code and data in this repository are publicly available for review at
+<https://github.com/hecboar/lora-placement-hybrid>. A permanent **Zenodo archive
+with a citable DOI will be created upon acceptance**. At that point, the DOI and
+the exact Git commit hash will be inserted here, in `README.md`, in
+`CITATION.cff`, and in the manuscript.

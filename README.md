@@ -136,10 +136,7 @@ This repository includes:
 
 Full hardware, hyperparameters, and the exact protocol are in [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
 
-```
-Zenodo DOI: [to be added before submission]
-Git commit: [to be added before submission]
-```
+The code and data in this repository are publicly available for review. A permanent **Zenodo archive with a citable DOI will be created upon acceptance**; the DOI and the exact Git commit hash will be added here at that time.
 
 ## Related Papers
 
@@ -153,7 +150,7 @@ Paper 2 reported that the recurrent backbone acts as a "functional backbone" whi
 
 ## Citation
 
-This manuscript is under review at **PeerJ Computer Science**. A Zenodo archive will be created at acceptance/submission; the DOI and Git commit hash will be inserted here and in the manuscript.
+This manuscript is under review at **PeerJ Computer Science**. A permanent Zenodo archive with a citable DOI will be created upon acceptance, and the DOI and Git commit hash will be added here and in the manuscript at that time.
 
 ```bibtex
 @misc{borobia2026lora,
@@ -163,8 +160,7 @@ This manuscript is under review at **PeerJ Computer Science**. A Zenodo archive 
   author = {Borobia, H{\'e}ctor and Segu{\'i}-Mas, Elies and Tormo-Carb{\'o}, Guillermina},
   year   = {2026},
   note   = {Under review at PeerJ Computer Science},
-  howpublished = {\url{https://github.com/hecboar/lora-placement-hybrid}},
-  doi    = {[to be added after Zenodo archive]}
+  howpublished = {\url{https://github.com/hecboar/lora-placement-hybrid}}
 }
 ```
 

@@ -13,6 +13,5 @@ year: 2026
 repository-code: "https://github.com/hecboar/lora-placement-hybrid"
 url: "https://github.com/hecboar/lora-placement-hybrid"
 license: MIT
-# DOI to be added after the Zenodo archive is created:
-doi: "[to be added after Zenodo archive]"
-notes: "Manuscript under review at PeerJ Computer Science. Single-seed (3407), two-model, sub-billion-parameter exploratory study."
+# A Zenodo DOI will be added here once the archive is created upon acceptance.
+notes: "Manuscript under review at PeerJ Computer Science. Single-seed (3407), two-model, sub-billion-parameter exploratory study. A permanent Zenodo archive with a citable DOI will be created upon acceptance."

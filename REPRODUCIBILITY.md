@@ -17,8 +17,8 @@ A single training run takes approximately **15–40 minutes** depending on model
 
 | Key | Hugging Face identifier | Revision / commit |
 |-----|-------------------------|-------------------|
-| `qwen3_5_0_8b_base` | `Qwen/Qwen3.5-0.8B-Base` | `[exact HF revision — to be added before submission]` |
-| `falcon_h1_0_5b_base` | `tiiuae/Falcon-H1-0.5B-Base` | `[exact HF revision — to be added before submission]` |
+| `qwen3_5_0_8b_base` | `Qwen/Qwen3.5-0.8B-Base` | run-time default branch revision; pin the exact commit hash at archival |
+| `falcon_h1_0_5b_base` | `tiiuae/Falcon-H1-0.5B-Base` | run-time default branch revision; pin the exact commit hash at archival |
 
 > Base model weights are **not** redistributed in this repository; they are obtained from Hugging Face. Pin the exact revision shown above when reproducing.
 
