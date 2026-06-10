@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\caption{Paired bootstrap confidence intervals for key comparisons. Values are accuracy differences in percentage points (condition A $-$ condition B). Intervals are percentile 95\% CIs over shared evaluation instances and quantify evaluation-set uncertainty, not training-run variance.}
+\label{tab:key_bootstrap}
+\small
+\begin{tabular}{@{}llllrr@{}}
+\toprule
+\textbf{Model} & \textbf{Train} & \textbf{Benchmark} & \textbf{Comparison} & \textbf{$n$} & \textbf{$\Delta$ pp [95\% CI]} \\
+\midrule
+Qwen3.5-0.8B & GSM8K & GSM8K & \texttt{softmax\_only $-$ \_\_base\_\_} & 128 & +10.2 [+0.8, +19.5] \
+Qwen3.5-0.8B & GSM8K & GSM8K & \texttt{gdn\_only $-$ \_\_base\_\_} & 128 & -14.8 [-24.2, -5.5] \
+Qwen3.5-0.8B & GSM8K & GSM8K & \texttt{softmax\_plus\_mlp $-$ \_\_base\_\_} & 128 & -14.8 [-25.0, -4.7] \
+Qwen3.5-0.8B & GSM8K & GSM8K & \texttt{softmax\_plus\_mlp $-$ mlp\_only} & 128 & -23.4 [-32.8, -14.1] \
+Falcon-H1-0.5B & GSM8K & GSM8K & \texttt{attention\_only $-$ \_\_base\_\_} & 256 & +17.2 [+10.5, +23.8] \
+Falcon-H1-0.5B & GSM8K & GSM8K & \texttt{attention\_only $-$ all\_eligible} & 256 & +5.1 [-1.6, +11.7] \
+Falcon-H1-0.5B & GSM8K & GSM8K & \texttt{attention\_only $-$ ssm\_only} & 256 & +8.6 [+2.0, +15.2] \
+Falcon-H1-0.5B & UltraChat & HellaSwag & \texttt{attention\_only $-$ all\_eligible} & 512 & +2.7 [+0.8, +4.9] \
+Falcon-H1-0.5B & UltraChat & GSM8K & \texttt{attention\_only $-$ all\_eligible} & 256 & +5.5 [-1.6, +12.5] \
+\bottomrule
+\end{tabular}
+\end{table}

@@ -32,6 +32,10 @@ Thumbs.db
 
 # ── LaTeX source ──────────────────────────────────────────────
 *.tex
+# ...but DO ship the LaTeX renderings of the result/stats tables
+# (the manuscript source .tex stays ignored).
+!tables/*.tex
+!stats/*.tex
 
 # ── LaTeX build ───────────────────────────────────────────────
 paper/*.aux

@@ -1,0 +1,15 @@
+\begin{table}[t]
+\centering
+\caption{HumanEval floor-effect summary for CodeAlpaca-trained models. All listed conditions achieved zero correct solutions, so HumanEval is treated as a scale-limited negative result rather than a primary quantitative benchmark.}
+\label{tab:humaneval_floor}
+\small
+\begin{tabular}{@{}llrrr@{}}
+\toprule
+\textbf{Model} & \textbf{Condition(s)} & \textbf{$n$} & \textbf{Correct} & \textbf{Pass@1} \\
+\midrule
+Qwen3.5-0.8B & all six CodeAlpaca conditions & 164 & 0 & 0.000 \
+Falcon-H1-0.5B & all\_eligible & 157 & 0 & 0.000 \
+Falcon-H1-0.5B & five CodeAlpaca conditions & 164 & 0 & 0.000 \
+\bottomrule
+\end{tabular}
+\end{table}

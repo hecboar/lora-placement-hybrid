@@ -1,0 +1,20 @@
+\begin{table}[t]
+\centering
+\caption{Evaluation sample sizes used in the released per-instance results. Values are numbers of examples per condition; multiple values indicate that different training-domain evaluations used different subsets.}
+\label{tab:sample_sizes}
+\small
+\begin{tabular}{@{}llrrrrr@{}}
+\toprule
+\textbf{Model} & \textbf{Train} & \textbf{MMLU} & \textbf{GSM8K} & \textbf{ARC-C} & \textbf{HSwag} & \textbf{HumanEval} \\
+\midrule
+Qwen3.5-0.8B & Base & 512 & 128 & 299 & 512 & -- \
+Qwen3.5-0.8B & GSM8K & 512 & 128 & 299 & 512 & -- \
+Qwen3.5-0.8B & CodeAlpaca & 512 & 256 & 299 & 512 & 164 \
+Qwen3.5-0.8B & UltraChat & 512 & 256 & 299 & 512 & -- \
+Falcon-H1-0.5B & Base & 512 & 256 & 299 & 512 & -- \
+Falcon-H1-0.5B & GSM8K & 512 & 256 & 299 & 512 & -- \
+Falcon-H1-0.5B & CodeAlpaca & 512 & 256 & 299 & 512 & 157,164 \
+Falcon-H1-0.5B & UltraChat & 512 & 256 & 299 & 512 & -- \
+\bottomrule
+\end{tabular}
+\end{table}
