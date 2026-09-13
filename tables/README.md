@@ -1,5 +1,7 @@
 # `tables/` — Aggregate result tables
 
+> **Superseded.** These are the original outputs. Two evaluation-harness defects were found after release; the corrected analysis is in [`../reanalysis/`](../reanalysis/) and [`../reanalysis/VERDICT.md`](../reanalysis/VERDICT.md) documents them.
+
 Machine-readable aggregate tables. All numbers are **single-seed (3407)** point estimates from the two tested models. Each table is provided as CSV with a matching LaTeX rendering (`*.tex`) used in the manuscript.
 
 ## Files
@@ -7,7 +9,7 @@ Machine-readable aggregate tables. All numbers are **single-seed (3407)** point 
 | File | Main / supp. | Contents |
 |------|--------------|----------|
 | `all_results_flat.csv` | main | One row per **benchmark × condition × model × training domain** (164 rows). Columns include `accuracy`, `n_eval`, `delta_vs_base`, `delta_vs_full`, `trainable_params`, `pct_trainable`, `efficiency_ratio`, `estimated_cu`, plus relative `detail_path`/`adapter_dir` pointers. **Local Colab/RunPod absolute paths were stripped to relative paths** (see Caveats). |
-| `result_matrix_accuracy.csv` | main | Pivoted accuracy: one row per (model, training domain, condition); columns are the five benchmarks (`arc_challenge`, `gsm8k`, `hellaswag`, `humaneval`, `mmlu`). Empty `humaneval` cells = not evaluated; zeros where evaluated reflect the floor effect. |
+| `result_matrix_accuracy.csv` | main | Pivoted accuracy: one row per (model, training domain, condition); columns are the five benchmarks (`arc_challenge`, `gsm8k`, `hellaswag`, `humaneval`, `mmlu`). Empty `humaneval` cells = not evaluated; the zeros are an artefact of a metric that never ran, not a result. |
 | `efficiency_table.csv` | main | Per-condition efficiency: `mean_accuracy`, `mean_efficiency_ratio`, `trainable_params`, `pct_trainable`, `estimated_cu`, and off-target deltas. |
 | `forgetting_summary.csv` | main | Off-target accuracy change per condition/domain (`non_target_mean_delta_vs_base`) and the legacy `forgetting_score` (see Caveats). |
 | `paired_bootstrap_comparisons.csv` | supplementary | Full paired bootstrap output for many condition pairs. **Contains rows with `n_shared=0` and empty CIs** where no shared `example_id`s exist (cross-domain / HumanEval). See Caveats; for the curated main-paper subset use [`../stats/key_paired_bootstrap_comparisons.csv`](../stats/key_paired_bootstrap_comparisons.csv). |
@@ -19,9 +21,14 @@ Machine-readable aggregate tables. All numbers are **single-seed (3407)** point 
 
 Paired bootstrap CIs are computed over **shared `example_id`s** between the two compared systems: 10,000 resamples, percentile 95% intervals, bootstrap seed 3407. They quantify **evaluation-subset uncertainty for the fixed trained models**, **not** training-run variance (the study is single-seed). `mean_diff` is in accuracy fraction; `*_pp` columns are the same values in percentage points.
 
-## Why HumanEval is a floor-effect result
+## HumanEval is not a floor-effect result
 
-All released CodeAlpaca-trained conditions solved **zero** HumanEval examples on both models. HumanEval is therefore reported as a **scale-limited negative (floor-effect) result** and is **excluded from the main quantitative comparisons** (see `../stats/humaneval_floor_summary.csv`). HumanEval/`humaneval` columns and any code "recipe" rows must **not** be read as evidence of functional code-generation ability.
+An earlier version of this file described HumanEval as a scale-limited negative result
+because every CodeAlpaca-trained condition recorded zero. That was an artefact: the
+`code_eval` metric never executed, and its `NaN` reached the tables as `0.000`.
+Re-executing the stored completions gives `pass@1` between 0.213 and 0.341. The
+`humaneval` columns in these tables are therefore wrong, not merely uninformative. See
+[`../reanalysis/humaneval_rescore_summary.json`](../reanalysis/humaneval_rescore_summary.json).
 
 ## Sample-size caveats
 

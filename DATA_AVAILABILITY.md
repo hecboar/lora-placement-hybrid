@@ -26,14 +26,22 @@ The following derived artifacts are released in full:
 
 - **Per-instance predictions**, extracted answers, and correctness labels for every benchmark × condition × model (`results/eval_details/*.jsonl`), including the fixed evaluation `example_id`s.
 - **Aggregate metrics**: accuracy tables, efficiency/parameter summaries, off-target accuracy-change summaries, paired bootstrap comparisons (`tables/`).
-- **Statistical artifacts**: Wilson confidence intervals, key paired bootstrap comparisons, the HumanEval floor-effect summary, and sample-size tables (`stats/`).
+- **Statistical artifacts**: Wilson confidence intervals, key paired bootstrap comparisons and sample-size tables (`stats/`). These are the original outputs and are superseded; see `reanalysis/`.
 - **Figures** used in the manuscript (`figures/`, PDF + PNG).
 - **Machine-readable experiment summary** (`results/summary/paper3_summary.json`).
 
+## Corrected re-analysis
+
+Two defects in the evaluation harness were found after the first release: GSM8K
+answers were extracted as the last `####` match from generations run without a stop
+sequence, and the HumanEval metric never executed. `reanalysis/` contains the
+corrected per-instance labels, the scripts that derive them from the per-instance
+outputs already released here, and the corrected tables. No model was retrained.
+`reanalysis/VERDICT.md` documents what changed. Aggregates under `tables/`, `stats/`
+and `figures/` are the original outputs and are superseded.
+
 ## Archival identifiers
 
-The code and data in this repository are publicly available for review at
-<https://github.com/hecboar/lora-placement-hybrid>. A permanent **Zenodo archive
-with a citable DOI will be created upon acceptance**. At that point, the DOI and
-the exact Git commit hash will be inserted here, in `README.md`, in
-`CITATION.cff`, and in the manuscript.
+The code and data in this repository are publicly available at
+<https://github.com/hecboar/lora-placement-hybrid> and the preprint at
+<https://arxiv.org/abs/2604.22127> (cite version 2).

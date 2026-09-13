@@ -82,9 +82,34 @@ Per-condition target-module sets are recorded in `results/discovery/<model>__con
 | ARC-Challenge | 299 | |
 | HellaSwag | 512 | |
 | GSM8K | 256 | **Exception:** Qwen3.5 baseline and GSM8K-trained runs use **128**; CodeAlpaca/UltraChat runs use 256 |
-| HumanEval | 164 (157 for Falcon `all_eligible`/CodeAlpaca) | floor-effect negative result; excluded from main comparisons |
+| HumanEval | 164 (157 for Falcon `all_eligible`/CodeAlpaca) | see the evaluator note below: the metric did not execute in the original run |
 
 Exact per-benchmark sample sizes are in [`stats/sample_size_summary.csv`](stats/sample_size_summary.csv).
+
+## Known evaluator defects — read before re-running
+
+The evaluator used for the original run contained two defects. Anyone reproducing or
+extending this work should fix them first; see
+[`../reanalysis/VERDICT.md`](reanalysis/VERDICT.md) for the full account.
+
+1. **GSM8K answer extraction.** `generate_text` passed no stop criterion, so generation
+   ran the full 256 tokens, and `extract_final_number` returned the **last** `####`
+   match. The few-shot template is self-repeating, so a model that answered correctly
+   and did not emit an end-of-sequence token continued the pattern and invented a
+   further question with its own `####`, which is the value that was scored. Fix by
+   passing stop sequences (`\nQuestion:`, the system-prompt prefix, EOS) or by taking
+   the first `####` after the prompt.
+2. **HumanEval never executed.** `evaluate.load("code_eval")` refuses to run unless
+   `HF_ALLOW_CODE_EVAL=1` is set. The exception was caught and `pass@1` recorded as
+   `NaN`, which reached the tables as `0.000`. Set the variable, or execute the
+   completions directly as `reanalysis/rescore_humaneval_per_instance.py` does.
+
+Two further issues affect cost and power rather than correctness. Evaluation is
+**unbatched** — one forward pass per example and per answer option, and one generation
+at a time — which is the main reason a run takes hours and why full test splits were
+not used. And `build_sft_config` does not pass `seed`/`data_seed` to the trainer, so
+repeated runs differ only in LoRA initialisation; a genuine multi-seed study must pass
+both.
 
 ## Statistical / bootstrap settings
 

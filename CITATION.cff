@@ -1,17 +1,34 @@
 cff-version: 1.2.0
-message: "If you use this repository, please cite it as below."
-title: "Where Should LoRA Go? An Exploratory Study of Component-Type Placement for Parameter-Efficient Adaptation of Small Hybrid Language Models"
+message: "If you use this repository, please cite the preprint below."
+title: "Where Should LoRA Go? Component-Type Placement in Hybrid Language Models"
 type: software
 authors:
   - family-names: "Borobia"
     given-names: "Héctor"
+    email: "hecboar@doctor.upv.es"
+    affiliation: "VRAIN, Universitat Politècnica de València"
   - family-names: "Seguí-Mas"
     given-names: "Elies"
+    affiliation: "Universitat Politècnica de València"
   - family-names: "Tormo-Carbó"
     given-names: "Guillermina"
+    affiliation: "Universitat Politècnica de València"
 year: 2026
 repository-code: "https://github.com/hecboar/lora-placement-hybrid"
-url: "https://github.com/hecboar/lora-placement-hybrid"
+url: "https://arxiv.org/abs/2604.22127"
 license: MIT
-# A Zenodo DOI will be added here once the archive is created upon acceptance.
-notes: "Manuscript under review at PeerJ Computer Science. Single-seed (3407), two-model, sub-billion-parameter exploratory study. A permanent Zenodo archive with a citable DOI will be created upon acceptance."
+preferred-citation:
+  type: article
+  title: "Where Should LoRA Go? Component-Type Placement in Hybrid Language Models"
+  authors:
+    - family-names: "Borobia"
+      given-names: "Héctor"
+    - family-names: "Seguí-Mas"
+      given-names: "Elies"
+    - family-names: "Tormo-Carbó"
+      given-names: "Guillermina"
+  year: 2026
+  journal: "arXiv"
+  url: "https://arxiv.org/abs/2604.22127"
+  notes: "Cite version 2."
+notes: "Cite arXiv:2604.22127v2. Version 2 corrects two evaluation-harness defects present in v1: GSM8K answers were extracted as the last '####' match from generations run without a stop sequence, and the HumanEval metric never executed. Most v1 conclusions are withdrawn. The corrected analysis is in reanalysis/. Single-seed (3407), two-model, sub-billion-parameter study."

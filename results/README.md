@@ -2,6 +2,8 @@
 
 Raw and discovery-level outputs of the pipeline. All numbers are **single-seed (3407)**.
 
+> These per-instance outputs are **not** affected by the evaluation-harness defects described in [`../reanalysis/VERDICT.md`](../reanalysis/VERDICT.md): they record the model's actual generations, which is why the correction could be applied without retraining. The defects were in how these outputs were scored.
+
 ## `discovery/`
 
 Target-module discovery for each model:
@@ -24,7 +26,7 @@ train__<model>__<condition>__<domain>__seed3407__inline_eval__<benchmark>.jsonl 
 
 These per-instance files are the source from which all aggregate tables and **all bootstrap confidence intervals** are recomputed. Because they include the `example_id`s, paired comparisons can be reproduced exactly (shared-identifier matching).
 
-> HumanEval JSONL files exist only for CodeAlpaca-trained conditions and record the **floor-effect** result (zero solved); see [`../stats/humaneval_floor_summary.csv`](../stats/humaneval_floor_summary.csv).
+> HumanEval JSONL files exist only for CodeAlpaca-trained conditions and store the raw completions. The metric that was supposed to score them never executed; executing them against the official unit tests gives `pass@1` 0.213–0.341, and the corrected per-instance labels are in [`../reanalysis/eval_details_corrected/`](../reanalysis/eval_details_corrected/).
 
 ## `summary/paper3_summary.json`
 

@@ -1,25 +1,59 @@
-# Where Should LoRA Go? An Exploratory Study of Component-Type Placement for Parameter-Efficient Adaptation of Small Hybrid Language Models
+# Where Should LoRA Go? Component-Type Placement in Hybrid Language Models
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Status: under review](https://img.shields.io/badge/status-under%20review%20(PeerJ%20CS)-blue.svg)](#citation)
+[![arXiv](https://img.shields.io/badge/arXiv-2604.22127v2-b31b1b.svg)](https://arxiv.org/abs/2604.22127)
 
-> **TL;DR** — Across two small representative hybrid LMs, attention-only LoRA is the strongest low-parameter default candidate among the tested placement conditions. Recurrent-backbone adaptation behaves differently in the tested sequential and parallel architectures, and broader multi-seed/larger-scale validation remains necessary.
+> ### Correction notice
+>
+> Two defects were found in the evaluation harness that produced the results first
+> released here. GSM8K answers were extracted as the **last** `####` match from
+> generations run without a stop sequence, and the HumanEval metric never executed,
+> so its `NaN` reached the tables as `0.000`.
+>
+> The corrected analysis is in **[`reanalysis/`](reanalysis/)**, and
+> **[`reanalysis/VERDICT.md`](reanalysis/VERDICT.md)** documents both defects claim by
+> claim. No model was retrained: the correction re-scores the per-instance outputs
+> already in this repository. The findings below are the corrected ones, and match
+> arXiv:2604.22127**v2**. Everything under `tables/`, `stats/` and `figures/` is the
+> original output and is superseded, retained because v1 of the preprint cites it.
 
-This repository accompanies an **exploratory, controlled study** of *where* LoRA should be placed in hybrid language models that combine softmax attention with a recurrent sequence-mixing component (state-space models or gated linear attention). The study is **single-seed (3407), two-model, and sub-billion-parameter**; findings are reported as tested-setting observations, not universal laws.
+This repository accompanies a controlled study of *where* LoRA should be placed in
+hybrid language models that combine softmax attention with a recurrent sequence-mixing
+component (state-space models or gated linear attention). Two sub-billion-parameter
+models are compared across six placement conditions each, three training domains, and
+five benchmarks, at a single seed (3407).
 
-## Key Findings
+## Findings
 
-All numbers below are single-seed point estimates from the two tested models. Wording is intentionally cautious; see [Statistical Notes](#statistical-notes) and the manuscript for full context.
+After correction, an exhaustive paired bootstrap over all **534** condition comparisons
+leaves **51** significant before multiplicity correction and **10** after Holm
+correction within each (model, domain, benchmark) family. None of the ten is an
+on-target placement gain. Three coherent statements survive:
 
-| # | Finding (tested settings) | Qwen3.5-0.8B (sequential GDN/attn) | Falcon-H1-0.5B (parallel Mamba-2/attn) |
-|---|---------------------------|------------------------------------|----------------------------------------|
-| 1 | **Attention-only is the strongest low-parameter target candidate** | +10.2 pp on GSM8K with 1.08M params (0.14%) | +17.2 pp on GSM8K with 2.21M params (0.42%) |
-| 2 | **Recurrent-backbone adaptation behaves differently across the tested topologies** | GDN-only **substantially degrades GSM8K under this setup** (−14.8 pp) | SSM-only **remains constructive on GSM8K** (+8.6 pp) |
-| 3 | **Different off-target transfer/degradation patterns are observed** | Up to −16.0 pp off-target degradation after UltraChat | Up to +10.9 pp positive transfer after UltraChat |
-| 4 | **Attention-only shows comparatively smaller off-target degradation in several settings** | Smallest off-target degradation across domains | Near-zero off-target change on cross-domain eval |
-| 5 | **Higher accuracy-per-parameter in the tested settings** | 9.4 pp/M vs 0.7 pp/M (`all_layers`) | 7.8 pp/M vs 1.1 pp/M (`all_eligible`) |
+| # | Finding | Evidence |
+|---|---------|----------|
+| 1 | The parallel hybrid transfers positively into mathematics from unrelated instruction data | Falcon-H1 gains 8.6–9.0 pp on GSM8K after UltraChat training, across several placements |
+| 2 | Off-target degradation is placement-dependent, and it is the **broad** placements that cause it | After UltraChat on Falcon-H1, `all_eligible`, `attention_plus_mlp` and `mlp_only` lose HellaSwag accuracy significantly; `attention_only` and `ssm_only` do not |
+| 3 | The two topologies order their single-component placements differently | After GSM8K training on Qwen3.5, `mlp_only` gains 4.3 pp on HellaSwag while `softmax_only` sits 6.1 pp below it |
 
-> These observations suggest that **component type and hybrid topology should be considered when selecting LoRA targets**. They are not universal rules: topology is confounded with model family, recurrent mechanism, and pre-training in this two-model design.
+Every surviving effect is measured either on a log-likelihood benchmark or as
+cross-domain transfer. The viable contribution concerns where adaptation does
+collateral damage, not which placement maximises target-task gain.
+
+**Withdrawn.** The original release claimed that attention-only placement is the
+strongest low-parameter target, that recurrent-backbone adaptation is destructive in
+sequential hybrids and constructive in parallel ones, that a destructive interference
+anomaly affects `softmax_plus_mlp`, that attention-only placement minimises off-target
+degradation, a set of accuracy-per-parameter ratios, and a HumanEval floor effect. None
+of these survives correction. HumanEval `pass@1` is in fact 0.213–0.341, not zero.
+[`reanalysis/VERDICT.md`](reanalysis/VERDICT.md) gives the before/after numbers.
+
+**Statistical power.** The standard deviation of the paired per-item difference on
+GSM8K is 0.46, so detecting a 3 pp difference at 80% power needs 1,848 items and 5 pp
+needs 665. The subsets used here hold 128 (Qwen3.5) and 256 (Falcon-H1)
+items against true effects of 2–7 pp. The design is underpowered by roughly an order of
+magnitude, and the non-significant results should be read as undetectable rather than
+absent.
 
 ## Repository Structure
 
@@ -29,49 +63,64 @@ All numbers below are single-seed point estimates from the two tested models. Wo
 ├── REPRODUCIBILITY.md                 ← Hardware, configs, exact protocol
 ├── DATA_AVAILABILITY.md               ← What is / is not redistributed
 ├── CITATION.cff                       ← How to cite this work
-├── ARCHIVE_CHECKLIST.md               ← Pre-submission / Zenodo checklist
 ├── requirements.txt                   ← Python dependencies
 ├── environment.yml                    ← Conda environment
 ├── notebook/
-│   └── paper3_lora_placement.ipynb    ← Full reproducible pipeline
-├── figures/                           ← Publication figures (PDF + PNG, both models)
+│   └── paper3_lora_placement.ipynb    ← Full training/evaluation pipeline
 ├── results/
 │   ├── discovery/                     ← Target-module manifests + condition specs
 │   ├── eval_details/                  ← Per-instance evaluation outputs (JSONL)
 │   └── summary/paper3_summary.json    ← Machine-readable experiment summary
-├── tables/                            ← Aggregate result tables (CSV) + README
-└── stats/                             ← Wilson CIs, key bootstrap, HumanEval floor, sample sizes
+├── reanalysis/                        ← CORRECTED analysis — start here
+│   ├── VERDICT.md                     ← The two defects, claim by claim
+│   ├── eval_details_corrected/        ← Corrected per-instance labels
+│   ├── *.py                           ← Scripts that produce everything below
+│   └── *.csv                          ← Corrected tables, bootstrap, power analysis
+├── figures/                           ← Original figures (superseded)
+├── tables/                            ← Original aggregate tables (superseded)
+└── stats/                             ← Original statistical artifacts (superseded)
 ```
 
-See [`tables/README.md`](tables/README.md) and [`results/README.md`](results/README.md) for a description of every file and how to interpret it.
+`results/eval_details/` holds the raw per-instance model outputs. These are unaffected
+by the defects and are the common source from which both the original and the corrected
+numbers are derived, which is why the correction required no retraining.
 
 ## Quick Start
 
 ```bash
-# Clone
 git clone https://github.com/hecboar/lora-placement-hybrid.git
 cd lora-placement-hybrid
-
-# Inspect results only (no GPU needed)
-python -c "import pandas as pd; print(pd.read_csv('tables/all_results_flat.csv').head())"
-
-# Reproduce from scratch — GPU machine (≥24GB VRAM)
-pip install -r requirements.txt
-jupyter notebook notebook/paper3_lora_placement.ipynb
 ```
 
-In the notebook, set `ROOT_DIR` to your preferred output path and follow the execution order in the final cell. The pipeline is checkpoint-safe — if your runtime disconnects, re-run the setup cells and resume; completed experiments auto-skip.
-
-**Inspect results only** — load the main table directly:
+Inspect the corrected results (no GPU needed):
 
 ```python
 import pandas as pd
 
-df = pd.read_csv("tables/all_results_flat.csv")
-# Filter to GSM8K-trained Falcon, compare attention-only vs all_eligible
-falcon_gsm = df[(df.model_key == "falcon_h1_0_5b_base") & (df.train_dataset == "gsm8k_train")]
-print(falcon_gsm[["condition", "benchmark", "accuracy", "delta_vs_base"]].to_string())
+# Corrected accuracy for every model x condition x domain x benchmark,
+# with the original value alongside for comparison.
+df = pd.read_csv("reanalysis/all_results_corrected.csv")
+gsm = df[(df.benchmark == "gsm8k") & (df.train_dataset == "gsm8k_train")]
+print(gsm[["model_key", "condition", "acc_reported", "acc_corrected"]].to_string())
+
+# Every pairwise comparison with bootstrap CIs and Holm-corrected p-values.
+bs = pd.read_csv("reanalysis/all_pairwise_bootstrap_corrected.csv")
+print(bs[bs.sig_holm][["model", "domain", "benchmark", "cond_a", "cond_b", "diff_pp"]])
 ```
+
+Reproduce the correction from the released per-instance outputs:
+
+```bash
+python reanalysis/rescore_gsm8k_and_aggregate.py     # GSM8K extraction fix + tables
+python reanalysis/rescore_humaneval_per_instance.py  # executes saved completions
+python reanalysis/survivors.py                       # exhaustive bootstrap + Holm
+python reanalysis/power_analysis.py                  # required sample sizes
+```
+
+Reproduce the experiments from scratch (GPU, ≥24 GB VRAM): set `ROOT_DIR` in
+`notebook/paper3_lora_placement.ipynb` and follow the execution order in the final
+cell. The pipeline is checkpoint-safe and completed experiments auto-skip. **Fix the
+evaluator first** — see [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
 
 ## Models and Conditions
 
@@ -80,63 +129,56 @@ print(falcon_gsm[["condition", "benchmark", "accuracy", "delta_vs_base"]].to_str
 | [Qwen3.5-0.8B-Base](https://huggingface.co/Qwen/Qwen3.5-0.8B-Base) | Sequential (18 GDN + 6 softmax attn, 3:1) | `all_layers`, `softmax_only`, `gdn_only`, `mlp_only`, `softmax_plus_mlp`, `gdn_plus_mlp` | 1.08M – 10.82M |
 | [Falcon-H1-0.5B-Base](https://huggingface.co/tiiuae/Falcon-H1-0.5B-Base) | Parallel (attn ∥ Mamba-2 per block) | `all_eligible`, `attention_only`, `ssm_only`, `mlp_only`, `attention_plus_mlp`, `ssm_plus_mlp` | 2.21M – 11.47M |
 
-All conditions use: LoRA rank=16, α=32, dropout=0.05, lr=2e-4 (cosine), 3 epochs, effective batch=16, seq_len=1024, 8-bit Adam, bf16, gradient checkpointing. Full protocol in [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
+All conditions use LoRA rank 16, α=32, dropout 0.05, lr 2e-4 (cosine), 3 epochs,
+effective batch 16, seq_len 1024, 8-bit Adam, bf16, gradient checkpointing. Full
+protocol in [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
 
-## Training Domains
+> **The two condition sets are not equally clean decompositions.** For Qwen3.5 the
+> three single-component conditions partition the broad condition exactly
+> (1.08 + 4.43 + 5.31 = 10.82M). For Falcon-H1 they do not: 2.21 + 2.52 + 5.31 = 10.04M
+> against 11.47M for `all_eligible`, leaving 1.43M (12.4%) in `o_proj` on all 36 blocks
+> and in `lm_head`, which appear in no single-component condition. Cross-topology
+> comparisons therefore confound topology with adapter coverage. Harmonising the
+> condition sets is the first item of follow-up work.
 
-Each model is fine-tuned independently on three adaptation domains (2,000 examples each) and evaluated on a fixed benchmark suite.
+## Training Domains and Evaluation
 
-| Domain | Dataset | Train samples | Role in this study |
-|--------|---------|---------------|--------------------|
-| Mathematics | GSM8K (train split) | 2,000 | Mathematics adaptation; primary eval on GSM8K |
-| Code-instruction | CodeAlpaca | 2,000 | Code-instruction / **domain-shift adaptation source** (not evidence of functional code-generation improvement) |
-| General instruction | UltraChat | 2,000 | General instruction adaptation; eval on MMLU, ARC-C, HellaSwag |
-| *(probe)* | HumanEval | — | **Floor-effect negative result** at sub-1B scale; excluded from main quantitative comparisons (see below) |
+Each model is fine-tuned independently on three domains of 2,000 examples each and
+evaluated on a fixed benchmark suite.
 
-## Setting-specific low-parameter summary
+| Domain | Dataset | Role |
+|--------|---------|------|
+| Mathematics | GSM8K (train split) | Mathematics adaptation |
+| Code-instruction | CodeAlpaca | Code instruction-following and domain-shift source |
+| General instruction | UltraChat | General instruction adaptation |
 
-> **Caption.** Smallest-parameter placement condition achieving ≥95% of the corresponding broad/full-LoRA mean accuracy across the four primary non-code benchmarks (MMLU, ARC-C, HellaSwag, GSM8K) after each training domain. **This is not a universal recipe**, and the CodeAlpaca row should **not** be interpreted as evidence of functional code-generation improvement (it reflects a domain-shift adaptation source; see [HumanEval Floor Effect](#humaneval-floor-effect)).
+| Benchmark | n | Scoring |
+|-----------|---|---------|
+| MMLU | 512 | log-likelihood over answer labels |
+| ARC-Challenge | 299 | log-likelihood over answer labels |
+| HellaSwag | 512 | log-likelihood over answer labels |
+| GSM8K | 128–256 | greedy generation, numeric answer extraction |
+| HumanEval | 164 (157 for one Falcon condition) | greedy generation, unit-test execution |
 
-| Model | Training domain | Smallest condition within 95% | Trainable params |
-|-------|-----------------|-------------------------------|------------------|
-| Falcon-H1-0.5B | GSM8K | `attention_only` | 2.21M |
-| Falcon-H1-0.5B | UltraChat | `attention_only` | 2.21M |
-| Falcon-H1-0.5B | CodeAlpaca† | `attention_only` | 2.21M |
-| Qwen3.5-0.8B | GSM8K | `softmax_only` | 1.08M |
-| Qwen3.5-0.8B | UltraChat | `softmax_only` | 1.08M |
-| Qwen3.5-0.8B | CodeAlpaca† | `all_layers` | 10.82M |
-
-†CodeAlpaca rows describe non-code benchmark retention under a code-instruction domain shift, **not** code-generation ability. Source data: [`tables/practitioner_recipe.csv`](tables/practitioner_recipe.csv).
+The three log-likelihood benchmarks involve no free generation and were unaffected by
+the defects. The two generative benchmarks are the ones the correction applies to.
 
 ## Statistical Notes
 
-- **Single seed:** all training runs use random seed **3407**. The study does **not** estimate training-run variance; multi-seed replication is future work.
-- **Paired bootstrap CIs** are computed over **matched `example_id`** between the two compared systems (shared evaluation instances only).
-- **10,000 bootstrap resamples**, **percentile 95%** intervals, **bootstrap seed 3407**.
-- These intervals quantify **evaluation-subset uncertainty for fixed trained models** — they are *not* training-run variance.
-- Evaluation subsets are fixed and released with per-instance outputs. Sample sizes vary by benchmark; the main exception is **GSM8K for Qwen3.5**, where the baseline and GSM8K-trained runs use **128** examples while CodeAlpaca/UltraChat runs use **256** (see [`stats/sample_size_summary.csv`](stats/sample_size_summary.csv)). Cross-domain comparisons with differing sample sizes are interpreted as exploratory.
-
-## HumanEval Floor Effect
-
-All released CodeAlpaca-trained conditions solved **zero** HumanEval examples on both models. HumanEval is therefore reported as a **scale-limited negative (floor-effect) result** and is **excluded from the main quantitative comparisons**. It does not support any code-generation claim. See [`stats/humaneval_floor_summary.csv`](stats/humaneval_floor_summary.csv).
-
-## Reproducibility
-
-This repository includes:
-
-- the full notebook/pipeline (`notebook/paper3_lora_placement.ipynb`);
-- target-module discovery manifests (`results/discovery/*_manifest.json`);
-- condition specifications (`results/discovery/*_condition_specs.json`);
-- fixed evaluation sample identifiers (embedded in the per-instance JSONL outputs);
-- per-instance evaluation outputs (`results/eval_details/*.jsonl`);
-- aggregate tables (`tables/`) and statistical artifacts (`stats/`);
-- publication figures (`figures/`);
-- scripts/configs to regenerate trained LoRA adapters (the adapter weights themselves are not redistributed — see [DATA_AVAILABILITY.md](DATA_AVAILABILITY.md));
-- environment files (`requirements.txt`, `environment.yml`).
-
-Full hardware, hyperparameters, and the exact protocol are in [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
-
-The code and data in this repository are publicly available for review. A permanent **Zenodo archive with a citable DOI will be created upon acceptance**; the DOI and the exact Git commit hash will be added here at that time.
+- **Single seed.** All runs use seed 3407. Note also that the training configuration
+  did not receive the seed, so data ordering and dropout would be identical across
+  repeated runs; only the LoRA initialisation would vary. A genuine multi-seed study
+  must vary both.
+- **Paired bootstrap** over matched `example_id`: 10,000 resamples, percentile 95%
+  intervals, bootstrap seed 3407. These quantify evaluation-subset uncertainty for
+  fixed trained models, not training-run variance.
+- **Multiplicity.** The corrected analysis reports Holm-corrected p-values within each
+  (model, domain, benchmark) family over all 534 comparisons, rather than a selected
+  subset.
+- **Sample sizes** vary by benchmark. GSM8K for Qwen3.5 uses 128 examples for the
+  baseline and GSM8K-trained runs and 256 for the CodeAlpaca/UltraChat runs, so those
+  cross-domain point estimates are not strictly comparable; paired comparisons use
+  shared identifiers only.
 
 ## Related Papers
 
@@ -146,21 +188,26 @@ This work is the third in a series studying hybrid language model internals:
 2. **Paper 2** — *Functional Component Ablation Reveals Specialization Patterns in Hybrid Language Model Architectures*
 3. **Paper 3** — This work: *Where Should LoRA Go?*
 
-Paper 2 reported that the recurrent backbone acts as a "functional backbone" while attention behaves as "refinement." This study explores whether that hierarchy is reflected in adaptation: in the tested settings, the strongest low-parameter LoRA target is the minority attention pathway rather than the dominant recurrent backbone — though this is a tested-setting observation, not a universal claim.
+Paper 2 reported that the recurrent backbone acts as a functional backbone while
+attention behaves as refinement. This study asked whether that hierarchy is reflected
+in adaptation. The original answer, that the minority attention pathway is the better
+adaptation target, did not survive correction.
 
 ## Citation
 
-This manuscript is under review at **PeerJ Computer Science**. A permanent Zenodo archive with a citable DOI will be created upon acceptance, and the DOI and Git commit hash will be added here and in the manuscript at that time.
+Cite **v2**. Version 1 reports the uncorrected numbers.
 
 ```bibtex
 @misc{borobia2026lora,
-  title  = {Where Should LoRA Go? An Exploratory Study of Component-Type
-            Placement for Parameter-Efficient Adaptation of Small Hybrid
+  title  = {Where Should LoRA Go? Component-Type Placement in Hybrid
             Language Models},
   author = {Borobia, H{\'e}ctor and Segu{\'i}-Mas, Elies and Tormo-Carb{\'o}, Guillermina},
   year   = {2026},
-  note   = {Under review at PeerJ Computer Science},
-  howpublished = {\url{https://github.com/hecboar/lora-placement-hybrid}}
+  eprint = {2604.22127},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  note   = {Version 2 corrects two evaluation-harness defects present in v1},
+  url    = {https://arxiv.org/abs/2604.22127}
 }
 ```
 
@@ -168,4 +215,4 @@ See also [CITATION.cff](CITATION.cff).
 
 ## License
 
-This project is licensed under the MIT License — see [LICENSE](LICENSE) for details.
+MIT — see [LICENSE](LICENSE).
