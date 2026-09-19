@@ -56,6 +56,21 @@ UNBATCHED_HOURS_PER_EVAL_ON_SUBSETS = 0.64
 RELEASED_SUBSET_ITEMS = 128 + 256 + 299 + 512 + 512
 
 
+
+def default_notebook() -> str:
+    """The pipeline notebook, wherever it lives.
+
+    The repository ships it as `notebook/paper3_lora_placement.ipynb`; the development
+    tree also has an identical copy under `news-experiments/`. Defaulting to one of
+    them breaks the other, and the one that breaks is the clone.
+    """
+    for rel in ("notebook/paper3_lora_placement.ipynb",
+                "news-experiments/paper3_lora_placement_reproducible.ipynb"):
+        p = os.path.join(ROOT, *rel.split("/"))
+        if os.path.exists(p):
+            return p
+    return os.path.join(ROOT, "notebook", "paper3_lora_placement.ipynb")
+
 def plan_evaluations(adapters: Sequence[str], benchmarks: Sequence[str],
                      gen_seconds: float = GEN_SECONDS_PER_ITEM) -> Dict[str, Any]:
     """Cost of the sweep, and of doing the same thing unbatched, for comparison."""
@@ -201,11 +216,15 @@ def main() -> int:
     ap.add_argument("--plan", action="store_true")
     ap.add_argument("--run", action="store_true")
     ap.add_argument("--project-dir", default="/workspace/lora-placement")
-    ap.add_argument("--notebook", default=os.path.join(
-        ROOT, "news-experiments", "paper3_lora_placement_reproducible.ipynb"))
+    ap.add_argument("--notebook", default=default_notebook())
     ap.add_argument("--benchmarks", nargs="+",
                     default=["gsm8k", "mmlu", "arc_challenge", "hellaswag"])
     ap.add_argument("--batch-size", type=int, default=16)
+    # A smoke test on one adapter and one benchmark costs a few minutes and
+    # catches integration errors that would otherwise surface an hour into
+    # the full sweep.
+    ap.add_argument("--max-adapters", type=int, default=0,
+                    help="stop after this many adapters; 0 means all")
     a = ap.parse_args()
 
     if a.self_test:
@@ -215,6 +234,8 @@ def main() -> int:
     adapters = sorted(d for d in os.listdir(models_dir)
                       if os.path.isdir(os.path.join(models_dir, d, "final_adapter"))
                       ) if os.path.isdir(models_dir) else []
+    if a.max_adapters:
+        adapters = adapters[:a.max_adapters]
     p = plan_evaluations(adapters or ["?"] * 36, a.benchmarks)
     print(f"{len(adapters)} adapters found, {p['items_per_adapter']:,} items each")
     print(f"estimated {p['gpu_hours']:.1f} GPU-h, about EUR {p['eur']:.0f}")

@@ -50,6 +50,21 @@ SKIP_MARKERS = (
 )
 
 
+
+def default_notebook() -> str:
+    """The pipeline notebook, wherever it lives.
+
+    The repository ships it as `notebook/paper3_lora_placement.ipynb`; the development
+    tree also has an identical copy under `news-experiments/`. Defaulting to one of
+    them breaks the other, and the one that breaks is the clone.
+    """
+    for rel in ("notebook/paper3_lora_placement.ipynb",
+                "news-experiments/paper3_lora_placement_reproducible.ipynb"):
+        p = os.path.join(ROOT, *rel.split("/"))
+        if os.path.exists(p):
+            return p
+    return os.path.join(ROOT, "notebook", "paper3_lora_placement.ipynb")
+
 def select_cells(notebook_path: str) -> tuple[List[str], List[str]]:
     """Return (cells to execute, human-readable reasons for the ones skipped)."""
     with open(notebook_path, encoding="utf-8") as f:
@@ -215,8 +230,7 @@ def main() -> int:
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--run", action="store_true")
     ap.add_argument("--project-dir", default="/workspace/lora-placement")
-    ap.add_argument("--notebook", default=os.path.join(
-        ROOT, "news-experiments", "paper3_lora_placement_reproducible.ipynb"))
+    ap.add_argument("--notebook", default=default_notebook())
     ap.add_argument("--models", nargs="+",
                     default=["qwen3_5_0_8b_base", "falcon_h1_0_5b_base"])
     ap.add_argument("--conditions", nargs="+",
