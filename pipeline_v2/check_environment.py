@@ -107,18 +107,23 @@ def main() -> int:
                         f"{repo} does not resolve: {type(e).__name__}")
 
     print("\n5. PEFT accepts exact dotted module names, which every condition relies on")
+    # PEFT stores target_modules as a set, so order is not preserved and must not be
+    # asserted. What matters is that every name survives verbatim: a rewritten or
+    # suffix-matched name would silently target different modules than the condition
+    # claims, which is the failure this check exists to catch.
     try:
         from peft import LoraConfig, TaskType
+        want = ["model.layers.0.self_attn.q_proj", "model.layers.1.mlp.down_proj"]
         c = LoraConfig(task_type=TaskType.CAUSAL_LM, r=16, lora_alpha=32,
-                       lora_dropout=0.05, bias="none",
-                       target_modules=["model.layers.0.self_attn.q_proj",
-                                       "model.layers.1.mlp.down_proj"])
-        ok = list(c.target_modules) == ["model.layers.0.self_attn.q_proj",
-                                        "model.layers.1.mlp.down_proj"]
-        print(f"   exact target_modules preserved: {ok}")
+                       lora_dropout=0.05, bias="none", target_modules=list(want))
+        got = c.target_modules
+        ok = set(got) == set(want) and len(got) == len(want)
+        print(f"   stored as {type(got).__name__}; every dotted name preserved: {ok}")
         if not ok:
-            problems.append("PEFT rewrote the target module list; conditions would not "
-                            "target what they claim to")
+            missing = [w for w in want if w not in got]
+            problems.append("PEFT altered the target module list "
+                            f"(missing or rewritten: {missing or list(got)}); conditions "
+                            "would not target what they claim to")
     except Exception as e:
         problems.append(f"PEFT LoraConfig failed: {e}")
         print(f"   FAILED: {e}")
