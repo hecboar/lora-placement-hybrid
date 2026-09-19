@@ -22,35 +22,73 @@ from __future__ import annotations
 import argparse
 from typing import Any, Dict, List, Optional, Sequence
 
-# Candidates, chosen so the study gains a scale axis inside one family and a family
-# axis at fixed scale, plus a pure-Transformer control. Layer counts are recorded where
-# published; `None` means the guard should read it from the model rather than assume.
+# Candidates. The priority is not breadth for its own sake but breaking the confound
+# the companion decoding study was criticised for: with one family per topology, a
+# difference between the two anchors could be topology, recurrent mechanism, tokenizer,
+# data or anything else. Granite-4.0-H-Micro resolves it because of what it shares with
+# each anchor:
+#
+#   Falcon vs Granite-H  same mechanism (Mamba-2), different topology  -> isolates topology
+#   Qwen   vs Granite-H  same topology (interleaved), different mechanism -> isolates mechanism
+#   Granite-H vs Granite-dense  same family, data and recipe, one with a recurrent
+#                               component and one without -> the cleanest control available
+#
+# `layers=None` means the guard must read the count from the model rather than assume it.
 CANDIDATES: Dict[str, Dict[str, Any]] = {
-    # already in the study
+    # anchors, already in the study
     "qwen3_5_0_8b_base": dict(hf_id="Qwen/Qwen3.5-0.8B-Base", family="qwen3_5",
-                              topology="sequential", params_b=0.76, layers=24,
-                              role="anchor, sequential hybrid"),
+                              topology="interleaved", mechanism="gdn", params_b=0.76,
+                              layers=24, ratio="18 GDN : 6 attention", priority=0,
+                              role="anchor, interleaved hybrid with linear attention"),
     "falcon_h1_0_5b_base": dict(hf_id="tiiuae/Falcon-H1-0.5B-Base", family="falcon_h1",
-                                topology="parallel", params_b=0.52, layers=36,
-                                role="anchor, parallel hybrid"),
+                                topology="parallel", mechanism="mamba2", params_b=0.52,
+                                layers=36, ratio="both per block", priority=0,
+                                role="anchor, parallel hybrid with Mamba-2"),
+    # the confound breaker, and its own same-family control
+    "granite_4_h_micro_base": dict(hf_id="ibm-granite/granite-4.0-h-micro-base",
+                                   family="granite4", topology="interleaved",
+                                   mechanism="mamba2", params_b=3.0, layers=40,
+                                   ratio="36 Mamba-2 : 4 attention", priority=1,
+                                   role="third topology point; shares mechanism with "
+                                        "Falcon and topology with Qwen, so the two "
+                                        "contrasts separate"),
+    "granite_4_micro_base": dict(hf_id="ibm-granite/granite-4.0-micro-base",
+                                 family="granite4", topology="none", mechanism="none",
+                                 params_b=3.0, layers=None, ratio="dense", priority=1,
+                                 role="pure-Transformer control from the SAME family, "
+                                      "data and recipe as granite_4_h_micro_base"),
     # scale axis, family held fixed
     "falcon_h1_1_5b_base": dict(hf_id="tiiuae/Falcon-H1-1.5B-Base", family="falcon_h1",
-                                topology="parallel", params_b=1.5, layers=24,
+                                topology="parallel", mechanism="mamba2", params_b=1.5,
+                                layers=24, ratio="both per block", priority=2,
                                 role="scale step within the parallel family"),
     "qwen3_5_2b_base": dict(hf_id="Qwen/Qwen3.5-2B-Base", family="qwen3_5",
-                            topology="sequential", params_b=2.0, layers=None,
-                            role="scale step within the sequential family"),
-    # family axis, scale roughly held
-    "zamba2_1_2b": dict(hf_id="Zyphra/Zamba2-1.2B", family="zamba2",
-                        topology="parallel", params_b=1.2, layers=None,
-                        role="third family, breaks the topology/family confound"),
-    "lfm2_1_2b": dict(hf_id="LiquidAI/LFM2-1.2B", family="lfm2",
-                      topology="sequential", params_b=1.2, layers=None,
-                      role="fourth family, short convolution plus attention"),
-    # control
-    "qwen2_5_0_5b": dict(hf_id="Qwen/Qwen2.5-0.5B", family="transformer",
-                         topology="none", params_b=0.49, layers=24,
-                         role="pure-Transformer control: is the effect about hybridity?"),
+                            topology="interleaved", mechanism="gdn", params_b=2.0,
+                            layers=None, ratio=None, priority=2,
+                            role="scale step within the interleaved family"),
+}
+
+# Considered and not selected. Recorded so the choice is auditable rather than implied.
+REJECTED: Dict[str, str] = {
+    "Zyphra/Zamba2-1.2B":
+        "Attention is a single SHARED block reused across depth, and the architecture "
+        "already carries its own LoRA projectors for depth specialisation. Placing our "
+        "LoRA on top of built-in LoRA breaks both the parameter accounting and the "
+        "meaning of 'attention_only', which elsewhere is one attention module per layer. "
+        "The model card also calls its HuggingFace implementation temporary.",
+    "LiquidAI/LFM2-1.2B":
+        "Short-convolution mixer rather than a recurrent state, and no base (non-instruct) "
+        "checkpoint, so it matches neither the component taxonomy nor the base-model design.",
+    "nvidia/Nemotron-H-8B":
+        "Smallest hybrid in the family is 8B, which does not train on a 24 GB card at "
+        "this sequence length.",
+    "ibm-granite/granite-4.0-h-tiny-base":
+        "Mixture-of-experts, so the MLP component is not one dense block per layer and "
+        "the MLP condition is not comparable with the other models.",
+    "Qwen/Qwen2.5-0.5B":
+        "Viable pure-Transformer control, but superseded by granite-4.0-micro-base, which "
+        "holds family, data and recipe fixed against its own hybrid sibling instead of "
+        "varying all three.",
 }
 
 # Token sets, most specific first. Order matters: a Mamba block often contains a module
@@ -255,15 +293,34 @@ def _self_test() -> int:
         check("and the message quantifies how many", "unclassified" in str(e))
 
     print("\n5. the registry")
-    check("every candidate has an HF id and a role",
-          all(v.get("hf_id") and v.get("role") for v in CANDIDATES.values()))
+    check("every candidate has an HF id, a role and a priority",
+          all(v.get("hf_id") and v.get("role") and "priority" in v
+              for v in CANDIDATES.values()))
     check("the control is marked as having no recurrent component",
-          CANDIDATES["qwen2_5_0_5b"]["topology"] == "none")
-    fams = {v["family"] for v in CANDIDATES.values()}
-    check("the roster spans at least four hybrid families plus a control",
-          len(fams - {"transformer"}) >= 4, str(sorted(fams)))
+          CANDIDATES["granite_4_micro_base"]["topology"] == "none")
+    check("the control shares its family with a hybrid sibling",
+          CANDIDATES["granite_4_micro_base"]["family"]
+          == CANDIDATES["granite_4_h_micro_base"]["family"])
+
+    # The point of the roster: each contrast must vary exactly one thing.
+    q = CANDIDATES["qwen3_5_0_8b_base"]
+    f = CANDIDATES["falcon_h1_0_5b_base"]
+    g = CANDIDATES["granite_4_h_micro_base"]
+    check("Falcon vs Granite isolates topology: mechanism held, topology varies",
+          f["mechanism"] == g["mechanism"] and f["topology"] != g["topology"],
+          f"{f['mechanism']}/{g['mechanism']}, {f['topology']}/{g['topology']}")
+    check("Qwen vs Granite isolates mechanism: topology held, mechanism varies",
+          q["topology"] == g["topology"] and q["mechanism"] != g["mechanism"],
+          f"{q['topology']}/{g['topology']}, {q['mechanism']}/{g['mechanism']}")
+    check("the two anchors alone cannot separate the two, which is the confound",
+          q["topology"] != f["topology"] and q["mechanism"] != f["mechanism"])
+
     check("there are two scale points in at least one family",
           sum(1 for v in CANDIDATES.values() if v["family"] == "falcon_h1") >= 2)
+    check("every rejected model records why it was rejected",
+          all(len(v) > 40 for v in REJECTED.values()) and len(REJECTED) >= 4)
+    check("nothing is both selected and rejected",
+          not ({v["hf_id"] for v in CANDIDATES.values()} & set(REJECTED)))
 
     print(f"\n{len(failures)} failure(s)" if failures else "\nall checks passed")
     return 1 if failures else 0
