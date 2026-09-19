@@ -25,11 +25,13 @@ Prevalence of completions containing more than one `####`:
 | Qwen `gdn_only` (GSM8K-trained) | 118 / 128 |
 | Qwen `softmax_only` (GSM8K-trained) | 0 / 128 |
 
-The correction truncates each saved completion at the first stop marker and then
-applies the **original, unmodified** extractor and normaliser. Between 0 and 77
+The correction truncates each saved completion at the first stop marker and then takes
+the **first** `####` match, with the original numeric normaliser unchanged. Truncation
+alone leaves 13 of 8,832 completions carrying a second `####` inside the answer block;
+a working stop criterion would not have emitted that tail. Between 0 and 77
 labels per file change.
 
-**Robustness of the correction.** Across all 39 GSM8K files, 1,515 labels flip from
+**Robustness of the correction.** Across all 39 GSM8K files, 1,528 labels flip from
 incorrect to correct and only 6 flip the other way. The correction is almost purely
 recovering answers the model got right and the harness mis-read; it is not an
 arbitrary re-scoring that happens to favour some conditions. The six reverse flips
@@ -75,19 +77,19 @@ placements.
 | Model | Domain | Condition | Reported | Corrected |
 |---|---|---|---|---|
 | Qwen | — | base | .297 | **.422** |
-| Qwen | GSM8K | `softmax_only` | .398 | .398 |
-| Qwen | GSM8K | `mlp_only` | .383 | .414 |
-| Qwen | GSM8K | `gdn_only` | .148 | **.438** |
-| Qwen | GSM8K | `softmax_plus_mlp` | .148 | **.438** |
-| Qwen | GSM8K | `gdn_plus_mlp` | .203 | **.492** |
+| Qwen | GSM8K | `gdn_plus_mlp` | .203 | **.500** |
 | Qwen | GSM8K | `all_layers` | .375 | **.492** |
+| Qwen | GSM8K | `mlp_only` | .383 | **.469** |
+| Qwen | GSM8K | `softmax_plus_mlp` | .148 | **.453** |
+| Qwen | GSM8K | `gdn_only` | .148 | **.438** |
+| Qwen | GSM8K | `softmax_only` | .398 | .398 |
 | Falcon | — | base | .383 | **.531** |
-| Falcon | GSM8K | `attention_only` | .555 | .590 |
-| Falcon | GSM8K | `ssm_plus_mlp` | .508 | .570 |
-| Falcon | GSM8K | `all_eligible` | .504 | .555 |
-| Falcon | GSM8K | `ssm_only` | .469 | .551 |
-| Falcon | GSM8K | `mlp_only` | .508 | .543 |
-| Falcon | GSM8K | `attention_plus_mlp` | .492 | .520 |
+| Falcon | GSM8K | `attention_only` | .555 | **.590** |
+| Falcon | GSM8K | `ssm_plus_mlp` | .508 | **.570** |
+| Falcon | GSM8K | `all_eligible` | .504 | **.555** |
+| Falcon | GSM8K | `ssm_only` | .469 | **.551** |
+| Falcon | GSM8K | `mlp_only` | .508 | **.543** |
+| Falcon | GSM8K | `attention_plus_mlp` | .492 | **.520** |
 
 Note the mechanism: `softmax_only` is the single condition whose score does not move,
 because it is the only one that learned to emit an end-of-sequence token. Much of what
@@ -108,14 +110,14 @@ settings to the manuscript, applied to corrected correctness labels.
 |---|---|---|---|
 | Qwen GSM8K `softmax_only` vs base | +10.2 | **−2.3** | [−10.2, +5.5] |
 | Qwen GSM8K `gdn_only` vs base | −14.8 | **+1.6** | [−7.8, +10.9] |
-| Qwen GSM8K `softmax_plus_mlp` vs base | −14.8 | **+1.6** | [−7.8, +10.9] |
-| Qwen GSM8K `softmax_plus_mlp` vs `mlp_only` | −23.4 | **+2.3** | [−5.5, +10.2] |
+| Qwen GSM8K `softmax_plus_mlp` vs base | −14.8 | **+3.1** | [−5.5, +12.5] |
+| Qwen GSM8K `softmax_plus_mlp` vs `mlp_only` | −23.4 | **−1.6** | [−9.4, +6.2] |
 | Qwen GSM8K `softmax_only` vs `all_layers` | — | **−9.4** | [−17.2, −1.6] |
 | Falcon GSM8K `attention_only` vs base | +17.2 | **+5.9** | [0.0, +11.7] |
 | Falcon GSM8K `attention_only` vs `all_eligible` | +5.1 | **+3.5** | [−2.3, +9.4] |
 | Falcon GSM8K `attention_only` vs `ssm_only` | +8.6 | **+3.9** | [−2.3, +10.2] |
 | Falcon GSM8K `ssm_only` vs base | +8.6 | **+2.0** | [−4.3, +8.2] |
-| Falcon UltraChat GSM8K `attention_only` vs `all_eligible` | +5.5 | **−3.1** | [−9.0, +2.7] |
+| Falcon UltraChat GSM8K `attention_only` vs `all_eligible` | +5.5 | **−2.7** | [−8.6, +2.7] |
 | Falcon UltraChat HellaSwag `attention_only` vs `all_eligible` | +2.7 | **+2.7** | [+0.8, +4.9] |
 
 ---
@@ -130,7 +132,7 @@ settings to the manuscript, applied to corrected correctness labels.
 | 4 | Attention-only shows the smallest off-target degradation | **Fails.** After UltraChat on Qwen, `softmax_only` is −5.1 pp, ranking fourth of six behind `gdn_plus_mlp` (0.0) and `mlp_only` (−2.3). |
 | 5 | Higher accuracy-per-parameter (9.4 vs 0.7 pp/M; 7.8 vs 1.1) | **Fails for Qwen** (the numerator is now negative), **weakens for Falcon** (2.7 vs 0.2 pp/M, both from n.s. effects). |
 | 6 | HumanEval floor effect, 0/164 everywhere | **Fails.** Real pass@1 is 0.21–0.34. This reverses a reported negative result. |
-| 7 | `softmax_plus_mlp` destructive-interference anomaly (Section 6.3) | **Fails.** .148 → .438; +2.3 pp vs `mlp_only`. The anomaly was entirely the extraction artifact. |
+| 7 | `softmax_plus_mlp` destructive-interference anomaly (Section 6.3) | **Fails.** .148 → 0.453; −1.6 pp vs `mlp_only`, not significant. The anomaly was entirely the extraction artifact. |
 
 ### What does survive
 
@@ -156,7 +158,7 @@ condition-vs-base comparison in the corrected data: 534 comparisons across both 
 three training domains and five benchmarks. Holm correction is applied within each
 (model, domain, benchmark) family.
 
-- 51 comparisons are significant before multiplicity correction.
+- 52 comparisons are significant before multiplicity correction.
 - **10 survive Holm correction.** None of them is an on-target GSM8K placement effect
   of the kind the paper is built on, and none is on HumanEval.
 
@@ -200,14 +202,14 @@ already exist.
 ## 5. The design is underpowered by roughly an order of magnitude
 
 From the corrected per-instance labels, the standard deviation of the paired per-item
-difference between two conditions is about 0.46. For 80% power at alpha 0.05
+difference between two conditions is about 0.45. For 80% power at alpha 0.05
 (`power_analysis_gsm8k.csv`):
 
 | To detect | Items needed | Current n |
 |---|---|---|
-| 3 pp | ~1,850 | 128 (Qwen) / 256 (Falcon) |
-| 5 pp | ~665 | same |
-| 10 pp | ~167 | same |
+| 3 pp | ~1,764 | 128 (Qwen) / 256 (Falcon) |
+| 5 pp | ~635 | same |
+| 10 pp | ~159 | same |
 
 The true effects are 2–7 pp. The current subsets give a CI half-width of 6.8 pp (median),
 so the study could only ever have detected effects it does not have. This is the single

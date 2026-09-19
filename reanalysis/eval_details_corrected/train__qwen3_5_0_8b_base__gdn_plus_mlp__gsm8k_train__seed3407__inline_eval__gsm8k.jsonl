@@ -21,7 +21,7 @@
 {"benchmark": "gsm8k", "example_id": 20, "correct": 0, "correct_original": 0, "pred_answer": "10", "pred_answer_original": "10", "gold_answer": "4"}
 {"benchmark": "gsm8k", "example_id": 21, "correct": 1, "correct_original": 1, "pred_answer": "70", "pred_answer_original": "70", "gold_answer": "70"}
 {"benchmark": "gsm8k", "example_id": 22, "correct": 1, "correct_original": 1, "pred_answer": "20000", "pred_answer_original": "20000", "gold_answer": "20000"}
-{"benchmark": "gsm8k", "example_id": 23, "correct": 0, "correct_original": 0, "pred_answer": "6", "pred_answer_original": "6", "gold_answer": "12"}
+{"benchmark": "gsm8k", "example_id": 23, "correct": 0, "correct_original": 0, "pred_answer": "20", "pred_answer_original": "6", "gold_answer": "12"}
 {"benchmark": "gsm8k", "example_id": 24, "correct": 1, "correct_original": 0, "pred_answer": "68", "pred_answer_original": "8", "gold_answer": "68"}
 {"benchmark": "gsm8k", "example_id": 25, "correct": 1, "correct_original": 0, "pred_answer": "32", "pred_answer_original": "140", "gold_answer": "32"}
 {"benchmark": "gsm8k", "example_id": 26, "correct": 1, "correct_original": 1, "pred_answer": "6", "pred_answer_original": "6", "gold_answer": "6"}
@@ -88,7 +88,7 @@
 {"benchmark": "gsm8k", "example_id": 87, "correct": 1, "correct_original": 0, "pred_answer": "27", "pred_answer_original": "140", "gold_answer": "27"}
 {"benchmark": "gsm8k", "example_id": 88, "correct": 0, "correct_original": 0, "pred_answer": "24", "pred_answer_original": "24", "gold_answer": "42"}
 {"benchmark": "gsm8k", "example_id": 89, "correct": 0, "correct_original": 0, "pred_answer": "220", "pred_answer_original": "220", "gold_answer": "110"}
-{"benchmark": "gsm8k", "example_id": 90, "correct": 0, "correct_original": 0, "pred_answer": "1", "pred_answer_original": "1", "gold_answer": "15"}
+{"benchmark": "gsm8k", "example_id": 90, "correct": 1, "correct_original": 0, "pred_answer": "15", "pred_answer_original": "1", "gold_answer": "15"}
 {"benchmark": "gsm8k", "example_id": 91, "correct": 0, "correct_original": 0, "pred_answer": "230", "pred_answer_original": "32", "gold_answer": "110"}
 {"benchmark": "gsm8k", "example_id": 92, "correct": 1, "correct_original": 1, "pred_answer": "80", "pred_answer_original": "80", "gold_answer": "80"}
 {"benchmark": "gsm8k", "example_id": 93, "correct": 1, "correct_original": 0, "pred_answer": "16", "pred_answer_original": "55", "gold_answer": "16"}

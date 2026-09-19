@@ -1,13 +1,13 @@
 n_shared,mean_diff,ci_low,ci_high,label,model_key,train_dataset,benchmark,condition_a,condition_b,mean_diff_pp,ci_low_pp,ci_high_pp
 128,-0.0234375,-0.1015625,0.0546875,Qwen GSM8K: softmax_only vs base,qwen3_5_0_8b_base,gsm8k_train,gsm8k,softmax_only,__base__,-2.34375,-10.15625,5.46875
 128,0.015625,-0.078125,0.109375,Qwen GSM8K: gdn_only vs base,qwen3_5_0_8b_base,gsm8k_train,gsm8k,gdn_only,__base__,1.5625,-7.8125,10.9375
-128,0.015625,-0.078125,0.109375,Qwen GSM8K: softmax_plus_mlp vs base,qwen3_5_0_8b_base,gsm8k_train,gsm8k,softmax_plus_mlp,__base__,1.5625,-7.8125,10.9375
-128,0.0234375,-0.0546875,0.1015625,Qwen GSM8K: softmax_plus_mlp vs mlp_only,qwen3_5_0_8b_base,gsm8k_train,gsm8k,softmax_plus_mlp,mlp_only,2.34375,-5.46875,10.15625
+128,0.03125,-0.0546875,0.125,Qwen GSM8K: softmax_plus_mlp vs base,qwen3_5_0_8b_base,gsm8k_train,gsm8k,softmax_plus_mlp,__base__,3.125,-5.46875,12.5
+128,-0.015625,-0.09375,0.0625,Qwen GSM8K: softmax_plus_mlp vs mlp_only,qwen3_5_0_8b_base,gsm8k_train,gsm8k,softmax_plus_mlp,mlp_only,-1.5625,-9.375,6.25
 128,-0.09375,-0.171875,-0.015625,Qwen GSM8K: softmax_only vs all_layers,qwen3_5_0_8b_base,gsm8k_train,gsm8k,softmax_only,all_layers,-9.375,-17.1875,-1.5625
 128,0.0390625,-0.046875,0.125,Qwen GSM8K: gdn_only vs softmax_only,qwen3_5_0_8b_base,gsm8k_train,gsm8k,gdn_only,softmax_only,3.90625,-4.6875,12.5
 256,0.05859375,0.0,0.1171875,Falcon GSM8K: attention_only vs base,falcon_h1_0_5b_base,gsm8k_train,gsm8k,attention_only,__base__,5.859375,0.0,11.71875
 256,0.03515625,-0.0234375,0.09375,Falcon GSM8K: attention_only vs all_eligible,falcon_h1_0_5b_base,gsm8k_train,gsm8k,attention_only,all_eligible,3.515625,-2.34375,9.375
 256,0.0390625,-0.0234375,0.1015625,Falcon GSM8K: attention_only vs ssm_only,falcon_h1_0_5b_base,gsm8k_train,gsm8k,attention_only,ssm_only,3.90625,-2.34375,10.15625
 256,0.01953125,-0.04296875,0.08203125,Falcon GSM8K: ssm_only vs base,falcon_h1_0_5b_base,gsm8k_train,gsm8k,ssm_only,__base__,1.953125,-4.296875,8.203125
-256,-0.03125,-0.08984375,0.02734375,Falcon UltraChat GSM8K: attention_only vs all_eligible,falcon_h1_0_5b_base,ultrachat,gsm8k,attention_only,all_eligible,-3.125,-8.984375,2.734375
+256,-0.02734375,-0.0859375,0.02734375,Falcon UltraChat GSM8K: attention_only vs all_eligible,falcon_h1_0_5b_base,ultrachat,gsm8k,attention_only,all_eligible,-2.734375,-8.59375,2.734375
 512,0.02734375,0.0078125,0.048828125,Falcon UltraChat HellaSwag: attention_only vs all_eligible,falcon_h1_0_5b_base,ultrachat,hellaswag,attention_only,all_eligible,2.734375,0.78125,4.8828125

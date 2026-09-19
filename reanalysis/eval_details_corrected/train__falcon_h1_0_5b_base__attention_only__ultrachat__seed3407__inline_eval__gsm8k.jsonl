@@ -146,7 +146,7 @@
 {"benchmark": "gsm8k", "example_id": 145, "correct": 0, "correct_original": 0, "pred_answer": "95", "pred_answer_original": "95", "gold_answer": "200"}
 {"benchmark": "gsm8k", "example_id": 146, "correct": 0, "correct_original": 0, "pred_answer": "1800", "pred_answer_original": "1800", "gold_answer": "2800"}
 {"benchmark": "gsm8k", "example_id": 147, "correct": 0, "correct_original": 0, "pred_answer": "14", "pred_answer_original": "14", "gold_answer": "50"}
-{"benchmark": "gsm8k", "example_id": 148, "correct": 0, "correct_original": 0, "pred_answer": "1", "pred_answer_original": "1", "gold_answer": "385000"}
+{"benchmark": "gsm8k", "example_id": 148, "correct": 1, "correct_original": 0, "pred_answer": "385000", "pred_answer_original": "1", "gold_answer": "385000"}
 {"benchmark": "gsm8k", "example_id": 149, "correct": 1, "correct_original": 0, "pred_answer": "2", "pred_answer_original": "8", "gold_answer": "2"}
 {"benchmark": "gsm8k", "example_id": 150, "correct": 1, "correct_original": 0, "pred_answer": "25", "pred_answer_original": "60", "gold_answer": "25"}
 {"benchmark": "gsm8k", "example_id": 151, "correct": 0, "correct_original": 0, "pred_answer": "2.2", "pred_answer_original": "2.2", "gold_answer": "10"}

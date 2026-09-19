@@ -33,10 +33,20 @@ os.makedirs(CORR, exist_ok=True)
 
 # ---------------------------------------------------------------- extractors
 def extract_final_number(text):
-    """Verbatim copy of the pipeline extractor (last #### wins)."""
-    m = re.findall(r"####\s*([-+]?[0-9][0-9,\.]*)", text)
+    """First '####' in the (already truncated) text, else the last bare number.
+
+    The original pipeline took the LAST '####'. Truncating at the stop marker removes
+    the hallucinated follow-up question, but 13 of the 8,832 released completions still
+    carry more than one '####' inside the answer block itself, where the model kept
+    rambling after giving its answer. Generation with a working stop criterion would
+    never have produced that tail, so the first marker is the answer. The rule is
+    chosen from what a correctly configured harness emits, not from which rule scores
+    higher; it is the same rule `evaluator_v2/evaluator.py` applies to new runs, so the
+    correction of v1 and the follow-up campaign are scored identically.
+    """
+    m = re.search(r"####\s*([-+]?[0-9][0-9,\.]*)", text)
     if m:
-        return m[-1].replace(",", "").strip()
+        return m.group(1).replace(",", "").strip()
     m = re.findall(r"[-+]?[0-9][0-9,\.]*", text)
     if m:
         return m[-1].replace(",", "").strip()

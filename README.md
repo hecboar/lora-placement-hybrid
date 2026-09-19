@@ -26,7 +26,7 @@ five benchmarks, at a single seed (3407).
 ## Findings
 
 After correction, an exhaustive paired bootstrap over all **534** condition comparisons
-leaves **51** significant before multiplicity correction and **10** after Holm
+leaves **52** significant before multiplicity correction and **10** after Holm
 correction within each (model, domain, benchmark) family. None of the ten is an
 on-target placement gain. Three coherent statements survive:
 
@@ -49,8 +49,8 @@ of these survives correction. HumanEval `pass@1` is in fact 0.213–0.341, not z
 [`reanalysis/VERDICT.md`](reanalysis/VERDICT.md) gives the before/after numbers.
 
 **Statistical power.** The standard deviation of the paired per-item difference on
-GSM8K is 0.46, so detecting a 3 pp difference at 80% power needs 1,848 items and 5 pp
-needs 665. The subsets used here hold 128 (Qwen3.5) and 256 (Falcon-H1)
+GSM8K is 0.45, so detecting a 3 pp difference at 80% power needs 1,764 items and 5 pp
+needs 635. The subsets used here hold 128 (Qwen3.5) and 256 (Falcon-H1)
 items against true effects of 2–7 pp. The design is underpowered by roughly an order of
 magnitude, and the non-significant results should be read as undetectable rather than
 absent.
