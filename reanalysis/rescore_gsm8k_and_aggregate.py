@@ -93,6 +93,33 @@ def parse_name(fn):
     return None
 
 
+# --------------------------------------------------------- subset index maps
+# `example_id` in the released files is the POSITION within that run's fixed
+# evaluation subset, not the benchmark index. Runs that used subsets of different
+# sizes share positions while those positions point at different questions: the
+# GSM8K 128- and 256-item subsets overlap in only 22 items and agree on none of the
+# 128 positions. Positions are mapped back to benchmark indices so that paired
+# comparisons are over the same questions.
+IDX_DIR = os.path.join(ROOT, "github", "results", "eval_indices")
+_SPLIT = {"gsm8k": "test", "mmlu": "validation", "arc_challenge": "validation",
+          "hellaswag": "validation", "humaneval": "test"}
+
+
+def index_map(bench, n):
+    fp = os.path.join(IDX_DIR, f"indices__{bench}__{_SPLIT.get(bench,'test')}__{n}.json")
+    if not os.path.exists(fp):
+        return None
+    with open(fp, encoding="utf-8") as f:
+        m = json.load(f)
+    return m if len(m) == n else None
+
+
+def keyed(rows, bench):
+    m = index_map(bench, len(rows))
+    return {(m[int(r["example_id"])] if m else r["example_id"]): r["correct"]
+            for r in rows}
+
+
 # ------------------------------------------------------------------ rescoring
 records, per_instance = [], {}
 for fp in sorted(glob.glob(os.path.join(SRC, "*.jsonl"))):
@@ -130,16 +157,14 @@ for fp in sorted(glob.glob(os.path.join(SRC, "*.jsonl"))):
                     acc_corrected=n_corr / len(rows),
                     n_labels_changed=n_changed, n_multi_hash=n_multi)
         per_instance[(meta["model_key"], meta["condition"],
-                      meta["train_dataset"], "gsm8k")] = \
-            {r["example_id"]: r["correct"] for r in out_rows}
+                      meta["train_dataset"], "gsm8k")] = keyed(out_rows, "gsm8k")
     else:                              # log-likelihood MC: unaffected by the bug
         n_rep = sum(r["correct"] for r in rows)
         meta.update(n=len(rows), acc_reported=n_rep / len(rows),
                     acc_corrected=n_rep / len(rows),
                     n_labels_changed=0, n_multi_hash=0)
         per_instance[(meta["model_key"], meta["condition"],
-                      meta["train_dataset"], bench)] = \
-            {r["example_id"]: r["correct"] for r in rows}
+                      meta["train_dataset"], bench)] = keyed(rows, bench)
     records.append(meta)
 
 # ---------------------------------------------------------- HumanEval (if run)
@@ -150,8 +175,7 @@ for fp in sorted(glob.glob(os.path.join(CORR, "*humaneval*.jsonl"))):
     meta.update(n=len(rows), acc_reported=0.0, acc_corrected=n_ok / len(rows),
                 n_labels_changed=n_ok, n_multi_hash=0)
     per_instance[(meta["model_key"], meta["condition"],
-                  meta["train_dataset"], "humaneval")] = \
-        {r["example_id"]: r["correct"] for r in rows}
+                  meta["train_dataset"], "humaneval")] = keyed(rows, "humaneval")
     records.append(meta)
 
 df = pd.DataFrame(records)

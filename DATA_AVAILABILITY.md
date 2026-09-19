@@ -24,7 +24,7 @@ which together allow the adapters to be **regenerated** deterministically (singl
 
 The following derived artifacts are released in full:
 
-- **Per-instance predictions**, extracted answers, and correctness labels for every benchmark × condition × model (`results/eval_details/*.jsonl`), including the fixed evaluation `example_id`s.
+- **Per-instance predictions**, extracted answers, and correctness labels for every benchmark × condition × model (`results/eval_details/*.jsonl`). Note that `example_id` in these files is the **position** within that run's fixed subset, not the index of the item in the benchmark; runs that used subsets of different sizes share positions that point at different questions. The position-to-index maps are released in `results/eval_indices/`, and `reanalysis/` uses them so that paired comparisons are over shared questions.
 - **Aggregate metrics**: accuracy tables, efficiency/parameter summaries, off-target accuracy-change summaries, paired bootstrap comparisons (`tables/`).
 - **Statistical artifacts**: Wilson confidence intervals, key paired bootstrap comparisons and sample-size tables (`stats/`). These are the original outputs and are superseded; see `reanalysis/`.
 - **Figures** used in the manuscript (`figures/`, PDF + PNG).

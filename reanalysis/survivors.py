@@ -18,9 +18,33 @@ OUT = os.path.join(ROOT, "reanalysis")
 
 MC = {"mmlu", "arc_challenge", "hellaswag"}
 
+# The per-instance files record `example_id` as the POSITION within that run's fixed
+# evaluation subset, not as the index of the item in the benchmark. Two runs that used
+# subsets of different sizes therefore share positions 0..n-1 while those positions
+# point at different questions: for GSM8K the 128- and 256-item subsets have only 22
+# items in common and agree on none of the 128 positions. Pairing on `example_id` alone
+# silently compares different questions, which is the same class of error as the
+# extraction defect. Positions are mapped back to benchmark indices here so that every
+# paired comparison is over the same questions.
+IDX_DIR = os.path.join(ROOT, "github", "results", "eval_indices")
+_SPLIT = {"gsm8k": "test", "mmlu": "validation", "arc_challenge": "validation",
+          "hellaswag": "validation", "humaneval": "test"}
+
+
+def _index_map(bench, n):
+    """Position -> benchmark index for the fixed subset of size n, if it is released."""
+    fp = os.path.join(IDX_DIR, f"indices__{bench}__{_SPLIT.get(bench, 'test')}__{n}.json")
+    if not os.path.exists(fp):
+        return None
+    with open(fp, encoding="utf-8") as f:
+        return json.load(f)
+
 
 def load_labels(model, condition, domain, bench):
-    """Corrected labels where a corrected file exists, original otherwise."""
+    """Corrected labels where a corrected file exists, original otherwise.
+
+    Keys are benchmark indices, so comparisons pair the same questions.
+    """
     if condition == "__base__":
         stem = model + "__base__" + bench + ".jsonl"
     else:
@@ -36,6 +60,9 @@ def load_labels(model, condition, domain, bench):
             continue                      # file still being written
         if not rows or "correct" not in rows[0]:
             continue                      # e.g. raw HumanEval: completions only
+        pos2idx = _index_map(bench, len(rows))
+        if pos2idx and len(pos2idx) == len(rows):
+            return {pos2idx[int(r["example_id"])]: r["correct"] for r in rows}
         return {r["example_id"]: r["correct"] for r in rows}
     return None
 
