@@ -171,6 +171,45 @@ has a subject at all.
 
 ---
 
+## First session on the machine
+
+Nothing below trains anything. The point is to find wiring failures while the meter is
+barely running, because every module has been tested in isolation and none has been
+tested against the real pipeline.
+
+```bash
+# 1. environment, ~10 min
+pip install -q -U transformers peft trl datasets accelerate bitsandbytes
+pip install -q mamba-ssm causal-conv1d      # the fast Mamba-2 path; halves Falcon
+python -c "import torch;print(torch.cuda.get_device_name(0), torch.cuda.is_available())"
+
+# 2. every suite, on the machine, before anything else. ~1 min, no GPU needed
+for m in evaluator_v2/evaluator.py pipeline_v2/*.py; do python $m --self-test; done
+
+# 3. what would run, and what it costs. Writes nothing
+python pipeline_v2/evaluate_adapters.py --plan --project-dir /workspace/lora-placement
+python pipeline_v2/install_conditions.py --check
+python pipeline_v2/run_campaign.py --dry-run
+
+# 4. the first real GPU work: re-evaluate the existing adapters. ~6 GPU-h, about EUR 2
+python pipeline_v2/evaluate_adapters.py --run --project-dir /workspace/lora-placement
+
+# 5. only once step 4 looks right
+python pipeline_v2/install_conditions.py --install
+python pipeline_v2/run_campaign.py --run --budget-hours 40
+```
+
+Stop at step 4 and read the numbers before installing the new conditions. The
+re-evaluation is the cheapest possible check that the whole chain works, and it also
+produces the corrected baseline every later comparison is measured against.
+
+**One thing to watch at step 4.** The batched evaluator has been verified against a
+synthetic model for padding, per-sequence indexing and batch invariance, but never
+against a real tokenizer. If the first adapter's GSM8K accuracy comes back wildly
+different from the corrected single-seed value for the same condition, that is a
+batching or prompt bug, not a finding. The corrected values to compare against are in
+`reanalysis/result_matrix_corrected.csv`.
+
 ## What the paper claims
 
 Not "where should LoRA go" — the 2025–2026 literature is already converging on
