@@ -8,6 +8,21 @@ per-instance correctness so paired bootstrap can be computed.
 import json, glob, os, sys, subprocess, tempfile
 import pyarrow as pa, pyarrow.ipc as ipc
 
+
+def _results_dir(*parts):
+    """Locate `results/<parts>` from either the repository or its parent working copy."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    for _ in range(4):
+        for prefix in ("", "github"):
+            cand = os.path.join(here, prefix, "results", *parts) if prefix                 else os.path.join(here, "results", *parts)
+            if os.path.isdir(cand):
+                return cand
+        parent = os.path.dirname(here)
+        if parent == here:
+            break
+        here = parent
+    return os.path.join(os.path.dirname(os.path.abspath(__file__)), "results", *parts)
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "reanalysis", "eval_details_corrected")
 os.makedirs(OUT, exist_ok=True)
@@ -49,7 +64,7 @@ def passes(task, completion, timeout=10):
         try: os.unlink(path)
         except Exception: pass
 
-files = sorted(glob.glob(os.path.join(ROOT, "github", "results", "eval_details", "*humaneval*.jsonl")))
+files = sorted(glob.glob(os.path.join(_results_dir("eval_details"), "*humaneval*.jsonl")))
 summary = []
 for fp in files:
     rows = [json.loads(l) for l in open(fp, encoding="utf-8")]

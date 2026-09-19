@@ -24,8 +24,23 @@ import json, glob, os, re
 import numpy as np
 import pandas as pd
 
+
+def _results_dir(*parts):
+    """Locate `results/<parts>` from either the repository or its parent working copy."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    for _ in range(4):
+        for prefix in ("", "github"):
+            cand = os.path.join(here, prefix, "results", *parts) if prefix                 else os.path.join(here, "results", *parts)
+            if os.path.isdir(cand):
+                return cand
+        parent = os.path.dirname(here)
+        if parent == here:
+            break
+        here = parent
+    return os.path.join(os.path.dirname(os.path.abspath(__file__)), "results", *parts)
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(ROOT, "github", "results", "eval_details")
+SRC = _results_dir("eval_details")
 OUT = os.path.join(ROOT, "reanalysis")
 CORR = os.path.join(OUT, "eval_details_corrected")
 os.makedirs(CORR, exist_ok=True)
@@ -100,7 +115,7 @@ def parse_name(fn):
 # GSM8K 128- and 256-item subsets overlap in only 22 items and agree on none of the
 # 128 positions. Positions are mapped back to benchmark indices so that paired
 # comparisons are over the same questions.
-IDX_DIR = os.path.join(ROOT, "github", "results", "eval_indices")
+IDX_DIR = _results_dir("eval_indices")
 _SPLIT = {"gsm8k": "test", "mmlu": "validation", "arc_challenge": "validation",
           "hellaswag": "validation", "humaneval": "test"}
 

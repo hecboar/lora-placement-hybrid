@@ -31,6 +31,21 @@ rather than engineered away.
 """
 from __future__ import annotations
 
+
+def _results_dir(*parts):
+    """Locate `results/<parts>` from either the repository or its parent working copy."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    for _ in range(4):
+        for prefix in ("", "github"):
+            cand = os.path.join(here, prefix, "results", *parts) if prefix                 else os.path.join(here, "results", *parts)
+            if os.path.isdir(cand):
+                return cand
+        parent = os.path.dirname(here)
+        if parent == here:
+            break
+        here = parent
+    return os.path.join(os.path.dirname(os.path.abspath(__file__)), "results", *parts)
+
 import argparse
 import json
 import os
@@ -352,8 +367,6 @@ def _self_test(discovery_dir: str) -> int:
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--self-test", action="store_true")
-    ap.add_argument("--discovery-dir", default=os.path.join(
-        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-        "github", "results", "discovery"))
+    ap.add_argument("--discovery-dir", default=_results_dir("discovery"))
     a = ap.parse_args()
     raise SystemExit(_self_test(a.discovery_dir) if a.self_test else print(__doc__))

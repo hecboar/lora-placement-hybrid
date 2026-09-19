@@ -11,8 +11,23 @@ import json, glob, os, itertools
 import numpy as np
 import pandas as pd
 
+
+def _results_dir(*parts):
+    """Locate `results/<parts>` from either the repository or its parent working copy."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    for _ in range(4):
+        for prefix in ("", "github"):
+            cand = os.path.join(here, prefix, "results", *parts) if prefix                 else os.path.join(here, "results", *parts)
+            if os.path.isdir(cand):
+                return cand
+        parent = os.path.dirname(here)
+        if parent == here:
+            break
+        here = parent
+    return os.path.join(os.path.dirname(os.path.abspath(__file__)), "results", *parts)
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(ROOT, "github", "results", "eval_details")
+SRC = _results_dir("eval_details")
 CORR = os.path.join(ROOT, "reanalysis", "eval_details_corrected")
 OUT = os.path.join(ROOT, "reanalysis")
 
@@ -26,7 +41,7 @@ MC = {"mmlu", "arc_challenge", "hellaswag"}
 # silently compares different questions, which is the same class of error as the
 # extraction defect. Positions are mapped back to benchmark indices here so that every
 # paired comparison is over the same questions.
-IDX_DIR = os.path.join(ROOT, "github", "results", "eval_indices")
+IDX_DIR = _results_dir("eval_indices")
 _SPLIT = {"gsm8k": "test", "mmlu": "validation", "arc_challenge": "validation",
           "hellaswag": "validation", "humaneval": "test"}
 
