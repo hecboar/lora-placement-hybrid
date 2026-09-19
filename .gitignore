@@ -49,3 +49,6 @@ paper/*.lof
 paper/*.lot
 paper/*.spl
 paper/*.synctex.gz
+
+# ── Python caches ─────────────────────────────────────────────
+__pycache__/
