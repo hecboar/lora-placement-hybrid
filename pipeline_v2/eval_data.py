@@ -195,12 +195,34 @@ def _self_test(index_dir: str) -> int:
     idx_a = nested_indices("hellaswag", 10042, 2048, 3407, index_dir)
     idx_b = nested_indices("hellaswag", 10042, 2048, 3407, index_dir)
     check("the draw is reproducible for a fixed seed", idx_a == idx_b)
-    small = nested_indices("hellaswag", 10042, 2048, 3407, index_dir)
     big = nested_indices("hellaswag", 10042, 4096, 3407, index_dir)
     check("a larger target still contains every released subset",
           all(set(v) <= set(big) for v in released_index_sets(index_dir, "hellaswag").values()))
-    print(f"    hellaswag 2048 covers the released 512: "
-          f"{set(released_index_sets(index_dir,'hellaswag').get(512, [])) <= set(small)}")
+
+    print("\n2b. nesting is guaranteed by construction, not by the RNG")
+    # numpy's choice(replace=False) happens to nest for some (population, size) pairs
+    # and not for others: the released HellaSwag 512 falls inside a fresh 2048 draw,
+    # while the released GSM8K 128 shares only 22 items with the 256. Relying on that
+    # would make comparability depend on which benchmark you are looking at, so the
+    # union of prior subsets is carried explicitly. This checks the guarantee on the
+    # case where luck does NOT save it.
+    import tempfile
+    empty = tempfile.mkdtemp()
+    prior = released_index_sets(index_dir, "gsm8k")
+    if {128, 256} <= set(prior):
+        blind = set(nested_indices("gsm8k", 1319, 512, 3407, empty))
+        guarded = set(nested_indices("gsm8k", 1319, 512, 3407, index_dir))
+        miss_blind = sum(1 for v in prior.values() if not set(v) <= blind)
+        miss_guarded = sum(1 for v in prior.values() if not set(v) <= guarded)
+        print(f"    without the index files: {miss_blind} of {len(prior)} released "
+              f"subsets would be lost")
+        print(f"    with them:               {miss_guarded} lost, "
+              f"{len(guarded)} items kept")
+        check("a blind draw does lose released subsets, so the guard is doing work",
+              miss_blind > 0)
+        check("carrying the union keeps every released subset", miss_guarded == 0)
+        check("and the target is raised rather than dropping any of them",
+              len(guarded) >= 512)
 
     print("\n3. never drop a released item to hit a smaller target")
     tiny = nested_indices("gsm8k", 1319, 10, 3407, index_dir)
